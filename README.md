@@ -1,4 +1,9 @@
-# Óptica Mérida
+# Óptica Mérida - Comercio Electrónico
+
+Aplicación web cliente para [**Óptica Mérida**](https://optica-merida.netlify.app)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6ad407fa-417e-4824-a841-412fcfb5bef0/deploy-status)](https://app.netlify.com/sites/optica-merida/deploys)
+
 
 ## Useful commands
 ```sh
