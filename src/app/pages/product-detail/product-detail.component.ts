@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ROUTES_NAMES } from '@app/routes/routes';
+import { Store } from '@ngxs/store';
+import { AddProduct } from '@store/cart';
+
+import { ROUTES_NAMES } from '@routes/routes';
 
 /** PRODUCT DETAIL COMPONENT */
 @Component({
@@ -16,7 +19,8 @@ export class ProductDetailComponent implements OnInit {
   /** */
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { 
   }
 
@@ -31,5 +35,11 @@ export class ProductDetailComponent implements OnInit {
         this.router.navigate(['/', ROUTES_NAMES.NOT_FOUND]);
       }
     });
+  }
+
+  /** */
+  public addToCart(): void {
+    this.store.dispatch( new AddProduct(this.id) )
+
   }
 }

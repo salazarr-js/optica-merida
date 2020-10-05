@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+
+import { SharedModule } from '@shared/shared.module';
+
 import { ProductDetailComponent } from './product-detail.component';
 
-
-const routes: Routes = [
+/** PAGE ROUTES */
+const ROUTES: Routes = [
   { path: '', component: ProductDetailComponent }
 ];
 
+/** PRODUCT DETAIL PAGE | LAZY LOADED FEATURE MODULE */
 @NgModule({
   declarations: [ProductDetailComponent],
   imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
+    SharedModule,
+    RouterModule.forChild(ROUTES),
   ]
 })
 export class ProductDetailModule { }

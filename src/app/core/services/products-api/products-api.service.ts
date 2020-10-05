@@ -15,12 +15,22 @@ export class ProductsApiService {
   }
   
   /** GET ALL PRODUCTS FROM API */
-  getAll(): Observable<ApiResponse> {
+  public getAll(): Observable<ApiResponse> {
     return this.api.get('products');
   }
   
-  /** GET PRODUCt DETAIL FROM API */
-  getProduct(id: number): Observable<ApiResponse> {
-    return this.api.get(`products/${id}`);
+  /** GET PRODUCT DETAIL FROM API */
+  public getProduct(id: number): Observable<ApiResponse> {
+    return this.api.get(`product/${id}`);
+  }
+
+  /** GET SOME PRODUCTS DETAIL FROM API */
+  public getProducts(products: number[]): Observable<ApiResponse> {
+    return this.api.post(`products`, { products });
+  }
+
+  /** BUY SOME PRODUCTS */
+  public buyProducts(products: number[]): Observable<ApiResponse> {
+    return this.api.post(`products/buy`, { products });
   }
 }

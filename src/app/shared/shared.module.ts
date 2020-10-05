@@ -1,7 +1,7 @@
 // ANGULAR IMPORTs
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+// import { RouterModule } from '@angular/router';
 // import { HttpClientModule } from '@angular/common/http';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -20,7 +20,7 @@ import { SHARED_COMPONENTS } from './components';
  */
 const sharedModules = [
   CommonModule,
-  RouterModule,
+  // RouterModule,
   // HttpClientModule,
   // FormsModule,
   // ReactiveFormsModule,

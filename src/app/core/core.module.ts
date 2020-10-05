@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 /** MODULES */
 import { CoreMaterialModule } from './core-material.module';
-// import { StoreModule } from '@core/store/store.module';
+import { StoreModule } from '@store/store.module';
 /** DECLARABLES */
 import { CORE_COMPONENTS } from './components';
 /** SERVICES */
@@ -28,7 +28,7 @@ const coreDeclarables = [
     HttpClientModule,
 
     CoreMaterialModule,
-    // StoreModule,
+    StoreModule,
   ],
   declarations: [ coreDeclarables ],
   exports: [

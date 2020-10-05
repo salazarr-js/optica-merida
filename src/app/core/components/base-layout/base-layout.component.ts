@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTES_NAMES } from '@app/routes/routes';
-// import { Store } from '@ngxs/store';
-// import { FlagStatusState } from '@app/core/store/flag-status';
 
+/** STORE */
+import { Select, Store } from '@ngxs/store';
+import { CartState } from '@app/core/store/cart';
+/** CONSTs & MODELS */
+import { Product } from '@app/models/product';
+import { ROUTES_NAMES } from '@app/routes/routes';
+import { Observable } from 'rxjs';
+
+/** */
 @Component({
-  selector: 'gf-base-layout',
+  selector: 'base-layout',
   templateUrl: './base-layout.component.html',
   styleUrls: ['./base-layout.component.scss']
 })
@@ -15,14 +21,17 @@ export class BaseLayoutComponent implements OnInit {
     cart: ['/', ROUTES_NAMES.CART ]
   };
 
-  // public isLoading: boolean;
+  /** */
+  @Select(CartState.products) products$: Observable<Product>;
 
+  /** */
   constructor(
-    // private store: Store
+    private store: Store
   ) {
     // this.isLoading = false;
   }
 
+  /** */
   ngOnInit() {
     // this.store.select( FlagStatusState ).subscribe(() => {
     //   const isProgress = this.store.selectSnapshot( FlagStatusState );

@@ -2,6 +2,8 @@
   <button mat-flat-button color="primary" [routerLink]="urls.home" >Inicio</button>
   <button mat-flat-button color="primary" [routerLink]="urls.product" >Producto</button>
   <button mat-flat-button color="primary" [routerLink]="urls.cart" >Carrito</button>
+
+  CARRITO: {{ (products$ | async).length }}
 </nav>
 
 <main class="">
