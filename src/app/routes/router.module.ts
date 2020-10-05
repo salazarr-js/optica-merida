@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BaseLayoutComponent } from '@app/core/components/base-layout/base-layout.component';
+import { pathToFileURL } from 'url';
 
 import { ROUTES_NAMES } from './routes';
 
 /** BASE ROUTES*/
-const routes: Routes = [
+const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: ROUTES_NAMES.HOME },
   { 
     path: ROUTES_NAMES.HOME,
@@ -19,15 +21,26 @@ const routes: Routes = [
     loadChildren: () => import('@pages/cart/cart.module').then(m => m.CartModule)
   },
   { 
-    path: '**',
+    path: '404',
     loadChildren: () => import('../pages/not-found/not-found.module').then(m => m.NotFoundModule)
+  },
+  { 
+    path: '**', redirectTo: ROUTES_NAMES.NOT_FOUND
   }
 ];
 
 /** ROUTER MODULE */
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot([
+      { 
+        path: '',
+        component: BaseLayoutComponent,
+        children: [
+          ...ROUTES
+        ]
+      }
+    ])
   ],
   exports: []
 })

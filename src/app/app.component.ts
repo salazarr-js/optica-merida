@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-/** */
+/** MAIN APP COMPONENT */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,5 +12,7 @@ export class AppComponent implements OnInit {
   }
 
   /** INIT */
-  ngOnInit() {}
+  ngOnInit() {
+    // TODO: SOCKET UPDATE
+  }
 }

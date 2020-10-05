@@ -1,16 +1,18 @@
-/** TYPES */
+/** PRODUCT TYPES */
 export enum ProductTypes {
   frame   = 'armazon',
   contact = 'contacto',
   sun     = 'sol'
 }
 
+/** GENDERS */
 export enum Genders {
   male   = 'm',
   female = 'f',
   unisex = 'u'
 }
 
+/** PRODUCT SUB-TYPES */
 export enum ProductSubTypes {
   // SUN & FRAME
   aviador = 'Aviador',
@@ -25,14 +27,14 @@ export enum ProductSubTypes {
   estetico = 'Estético',
 }
 
-export enum ProductColor {
+/** PRODUCT COLORS */
+export enum ProductColors {
   negro = 'Negro',
   dorado = 'Dorado',
   havana = 'Havana',
 }
 
-
-/** MODELS */
+/** PRODUCT MODEL */
 export interface Product {
   id?: number;
   cod: string;
@@ -48,4 +50,6 @@ export interface Product {
   color: string;
 
   images: string[];
+
+  url?: string;
 }

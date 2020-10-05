@@ -1,3 +1,23 @@
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  margin      : 0;
+  padding     : 0;
+}
+
+body {
+  height      : 100%;
+  // color       : $gf-black;
+  
+  display     : block;
+  overflow-x  : hidden;
+  overflow-y  : auto;
+  // font-family : $primary-font;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight : normal;
+
+  :focus {
+    outline : none;
+  }
+}
+

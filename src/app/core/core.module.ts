@@ -12,9 +12,6 @@ import { CoreMaterialModule } from './core-material.module';
 import { CORE_COMPONENTS } from './components';
 /** SERVICES */
 import { CORE_SERVICES } from './services';
-/** */
-import { environment as env } from '@env/environment';
-
 
 /** ALL CORE `components`, `directives`, `pipes` TO DECLARE */
 const coreDeclarables = [
