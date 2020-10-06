@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'http://95a0de0952fa.ngrok.io/api',
   ngxsLogger: true
 };
 

@@ -1,5 +1,21 @@
 @import 'variables';
 
 :host {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #f0f0f0;
 
+  .main {
+    flex: 1;
+    margin-top: 52px;
+  }
+
+  .footer {
+    display: block;
+    background-color: #333;
+    text-align: center;
+    color: white;
+    padding: 32px;
+  }
 }

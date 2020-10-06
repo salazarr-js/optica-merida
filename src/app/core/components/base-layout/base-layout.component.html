@@ -1,14 +1,12 @@
 <nav-bar></nav-bar>
 
-<nav>
-  <button mat-flat-button color="primary" [routerLink]="urls.home" >Inicio</button>
-  <button mat-flat-button color="primary" [routerLink]="urls.product" >Producto</button>
-</nav>
+<main class="main">
+  <nav>
+    <button mat-flat-button color="primary" [routerLink]="urls.home" >Inicio</button>
+    <button mat-flat-button color="primary" [routerLink]="urls.product" >Producto</button>
+  </nav>
 
-<main class="">
   <router-outlet></router-outlet>
 </main>
 
-<footer class="">
-  footer
-</footer>
+<footer></footer>
