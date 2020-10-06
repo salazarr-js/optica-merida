@@ -1,6 +1,6 @@
 # Óptica Mérida - Comercio Electrónico
 
-Aplicación web cliente para Comercio Electrónico de [**Óptica Mérida**](https://optica-merida.web.app/carrito)
+Aplicación web cliente para Comercio Electrónico de [**Óptica Mérida**](https://optica-merida.web.app)
 
 
 ## Useful commands

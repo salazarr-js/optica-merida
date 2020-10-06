@@ -5,5 +5,5 @@ export const ROUTES_NAMES = {
   PRODUCT: 'producto',
   CART   : 'carrito',
 
-  NOT_FOUND   : '404',
+  NOT_FOUND: '404',
 }

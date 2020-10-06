@@ -1,0 +1,23 @@
+<nav class="navbar container">
+
+  <a [routerLink]="urls.home" class="navbar-brand" matTooltip="Inicio">
+    <span class="navbar-brand--logo">👓</span>
+    <span>Óptica Mérida</span>
+  </a>
+
+  <span class="navbar-spacer"></span>
+
+  <button
+    mat-icon-button
+    class="navbar-cart"
+    matTooltip="Mi carrito de compras"
+    [routerLink]="urls.cart" 
+  >
+    <mat-icon
+      fontSet="material-icons-outlined"
+      matBadgeColor="primary"
+      [matBadge]="cartProducts" 
+      [matBadgeHidden]="!cartProducts" 
+    >shopping_cart</mat-icon>
+  </button>
+</nav>

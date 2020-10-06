@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
+
+import produce from "immer"
+// STORE
 import {
   State, Action,
   Selector, StateContext
 } from '@ngxs/store';
-
-import { tap } from 'rxjs/operators';
-
 // MODELs
-import { Product } from '@models/product';
+import { CartProduct, Product } from '@models/product';
 import { CartStateModel } from './cart.model';
 // SERVICES
 import { ProductsApiService } from '@services/products-api/products-api.service';
@@ -21,7 +21,7 @@ import {
 /** RETURN `State` DEFAULT INITIAL VALUE */
 export function cartDefaultValue(): CartStateModel {
   return {
-    products: [],
+    cartProducts: [],
     detailedProducts: [],
 
     loading: null,
@@ -41,10 +41,17 @@ export class CartState {
   /** CONSTRUCTOR */
   constructor(private productsApi: ProductsApiService) {}
 
-  /** RETURN CART `products` */
-  @Selector<number[]>()
+  /** RETURN TOTAL PRODUCTS IN CART */
+  @Selector<number>()
   static products(state: CartStateModel) {
-    return state.products;
+    return state.cartProducts
+      .reduce((total, product) => total + product.amount, 0);
+  }
+
+  /** RETURN CART `products` */
+  @Selector<CartProduct[]>()
+  static cartProducts(state: CartStateModel) {
+    return state.cartProducts;
   }
 
   /** RETURN CART `detailedPproducts` */
@@ -52,6 +59,24 @@ export class CartState {
   static detailedProducts(state: CartStateModel) {
     return state.detailedProducts;
   }
+
+    /** ADD PRODUCT ID TO CART STATE */
+    @Action(AddProduct)
+    public addProduct(ctx: StateContext<CartStateModel>, { id }: AddProduct) {
+      const state = ctx.getState().cartProducts;
+      const cartProducts = produce(state, cartProducts => {
+
+        let index = cartProducts.findIndex(p => p.id == id);
+        if ( index >= 0 ) {
+          cartProducts[index].amount++;
+        } else {
+          cartProducts.push({ id, amount: 1 });
+        }
+      });
+
+      ctx.patchState({ ...ctx.getState(), cartProducts });
+    }
+
 
   // /** GET/REQUEST ALL PLANS FROM API */
   // @Action(GetAllPlans, { cancelUncompleted: true })
@@ -82,17 +107,6 @@ export class CartState {
   //     })
   //   );
   // }
-
-  /** ADD PRODUCT ID TO CART STATE */
-  @Action(AddProduct)
-  public addProduct(ctx: StateContext<CartStateModel>, { productId }: AddProduct) {
-    const products = [ ...ctx.getState().products ];
-    products.push( productId );
-
-    ctx.patchState({ ...ctx.getState(), products });
-
-    // TODO: SI EL ID YA EXISTE AUMENTAR EL `amount`
-  }
 
   // /** SET/SAVE USER SELECTED PLAN ON API */
   // @Action(SetSelectedPlan)

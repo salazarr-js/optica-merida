@@ -14,7 +14,7 @@ export class SetDetailedProducts {
 /** ADD PRODUCT ID TO CART STATE */
 export class AddProduct {
   public static readonly type = '[Cart] Add Product';
-  constructor(public productId: number) {}
+  constructor(public id: number) {}
 }
 
 /** REMOVE PRODUCT ID FROM CART STATE */

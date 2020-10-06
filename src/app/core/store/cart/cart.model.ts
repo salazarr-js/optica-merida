@@ -1,12 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Product } from '@app/models/product';
+
+import { CartProduct, Product } from '@models/product';
 
 /** PLANS STATE MODEL */
 export interface CartStateModel {
-  /** ENTITY STATE   */
-  products: number[];
-  //TODO: DEBERIA SER UN OBJETO CON `id` & `amount`
-
+  /** PRODUCTS IN CART */
+  cartProducts: CartProduct[];
   /** PRODUCTS WITH DETAILS */
   detailedProducts: Product[];
 

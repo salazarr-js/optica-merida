@@ -53,3 +53,9 @@ export interface Product {
 
   url?: string;
 }
+
+/** CART PRODUCT MODEL */
+export interface CartProduct {
+  id: number;
+  amount: number
+}
