@@ -21,7 +21,7 @@
   }
 
   .navbar-brand {
-    color: white;
+    color: $white;
     font-size: 18px;
     text-decoration: none;
     span {
@@ -42,5 +42,9 @@
 
   .navbar-cart {
     color: white;
+    ::ng-deep .mat-badge-content {
+      background-color: $dark;
+      font-weight: $font-normal;
+    }
   }
 }
