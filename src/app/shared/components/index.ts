@@ -1,6 +1,6 @@
-// import { AdPreviewComponent } from './ad-preview/ad-preview.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 /** GROUP/EXPORT ALL SHARED COMPONENTs */
 export const SHARED_COMPONENTS = [
-  // AdPreviewComponent,
+  ProductCardComponent,
 ];

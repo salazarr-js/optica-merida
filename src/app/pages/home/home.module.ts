@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home.component';
 
+import { SharedModule } from '@shared/shared.module';
+
+import { HomeComponent } from './home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }
 ];
 
+/** HOME LAZY PAGE MODULE */
 @NgModule({
   declarations: [HomeComponent],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ]
 })

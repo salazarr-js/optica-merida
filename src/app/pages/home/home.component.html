@@ -1,3 +1,15 @@
-<h1>Inicio</h1>
+<div class="container">
+  <h1 class="home--title">Lentes de Sol</h1>
 
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, atque quae maxime quo aut assumenda adipisci aperiam qui quam hic et tempore ex ad iste quasi? Labore quos pariatur excepturi!</p>
+  <div class="row">
+
+    <div class="col col-3" *ngFor="let product of products; let i = index">
+
+      <product-card [product]="product"></product-card>
+
+    </div>
+
+  </div>
+
+
+</div>

@@ -1,0 +1,135 @@
+@import "variables";
+
+$height: 336px;
+:host {
+  height: $height;
+  display: block;
+  position: relative;
+  margin-bottom: 32px;
+
+  &:hover {
+    z-index: 10;
+    .product-card {
+      height: $height + 32px;
+      box-shadow: 0 7px 16px 0 rgba($darkest, .2), 0 1px 3px 0 rgba($darkest, .1);
+      .product-card--images .product-card--image.last {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+      }
+      .product-card--details {
+        .price--container, .add-cart-button {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+    }
+  }
+
+  .product-card {
+    height: $height;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    box-shadow: 0 1px 1px 0 rgba($darkest, .1), 0 -1px 2px 0 rgba($darkest, .1);
+    transition: all .15s ease-in-out;
+    will-change: height;
+    border-radius: 4px;
+    background-color: $white;
+
+    .product-card--images {
+      height: 208px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid $light;
+      .product-card--image {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        transition: all .15s ease-in-out;
+        background-size: 100% auto;
+        background-color: $white;
+        background-repeat: no-repeat;
+        background-position: center;
+        &.last {
+          opacity: 0;
+          transform: translate3d(0, -16px, 0) scale3d(1.1, 1.1, 1);
+          // transform: translate3d(0, -16px, 0) scale3d(.9, .9, 1);
+        }
+      }
+    }
+
+    .product-card--details {
+      padding: 0 16px 16px;
+      overflow: hidden;
+      position: relative;
+      .price--container {
+        height: 14px;
+        margin: 8px 0;
+        opacity: 0;
+        transform: translate3d(0, -5px, 0);
+        transition: all .15s ease-in-out;
+        .price {
+          color: $gray;
+          margin: 0;
+          display: inline-block;
+          position: relative;
+          font-size: 14px;
+          align-items: center;
+          line-height: 1;
+          font-weight: $font-normal;
+          .dollar { margin-right: 2px; }
+          &:after {
+            top: 48%;
+            width: 100%;
+            height: 1px;
+            display: block;
+            content: "";
+            position: absolute;
+            background-color: $gray;
+          }
+        }
+      }
+
+      .final-price {
+        color: $dark;
+        margin: 0;
+        display: flex;
+        font-size: 24px;
+        align-items: center;
+        font-weight: $font-normal;
+        line-height: 1;
+        margin-bottom: 4px;
+        .dollar { margin-right: 2px; }
+        .discount {
+          color: $accent-dark;
+          font-size: 14px;
+          margin-left: 8px;
+        }
+      }
+
+      .description {
+        color: $gray-dark;
+        margin: 0;
+        height: 16px * 1.35 * 2;
+        overflow: hidden;
+        font-size: 16px;
+        line-height: 1.35;
+        font-weight: $font-light;
+      }
+
+      .add-cart-button {
+        width: 100%;
+        height: 32px;
+        display: block;
+        margin-top: 8px;
+
+        opacity: 0;
+        transform: translate3d(0, 16px, 0);
+        transition: all .15s ease-in-out;
+        .mat-icon { margin-right: 4px; }
+      }
+    }
+  }
+}

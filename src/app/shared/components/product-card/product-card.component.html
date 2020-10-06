@@ -1,0 +1,33 @@
+
+<a [router-link]="['/', 'productos', 1]" class="product-card">
+  <div class="product-card--images">
+    <div class="product-card--image"
+      *ngFor="let image of images; index as index"
+      [ngClass]="{'last': index === 1}"
+      [ngStyle]="image"
+    ></div>
+  </div>
+
+  <div class="product-card--details">
+    <div class="price--container">
+      <p class="price" *ngIf="product.discount > 0">
+        <span class="dollar">$</span>
+        <span>{{ product.price | number:'1.2-2' }}</span>
+      </p>
+    </div>
+
+    <p class="final-price">
+      <span class="dollar">$</span>
+      <span>{{ finalPrice | number:'1.2-2' }}</span>
+
+      <span class="discount" *ngIf="product.discount > 0">{{ product.discount }}% Descuento</span>
+    </p>
+    
+    <h2 class="description">{{ product.description }}</h2>
+  
+    <button mat-flat-button color="primary" class="add-cart-button" (click)="addToCart()">
+      <mat-icon fontSet="material-icons-outlined">add_shopping_cart</mat-icon>
+      Agregar al carrito
+    </button>
+  </div>
+</a>

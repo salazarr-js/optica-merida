@@ -1,0 +1,15 @@
+@import "variables";
+
+:host {
+  padding: 32px 0;
+  display: block;
+  
+  .home--title {
+    color: $dark;
+    margin: 0;
+    font-size: 32px;
+    line-height: 1;
+    font-weight: $font-light;
+    margin-bottom: 32px;
+  }
+}
