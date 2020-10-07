@@ -2,3 +2,21 @@
 @import './vendor/';   // MATERIAL, BOOTSTRAP, THIRD PARTY STYLES IMPORTS ...
 @import './variables'; // ALL APP REUSABLE VARIABLES, COLORS, SIZES, FONTS
 @import './base/';     // BASE STILES, BASICS OVERWRITES ...
+
+/**    */
+.mat-button, .mat-flat-button {
+  .mat-button-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .mat-icon {
+      width: auto;
+      height: auto;
+      display: inline-block;
+      font-size: 18px;
+      line-height: 1;
+      margin-right: 8px;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import "variables";
+
+:host {
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  line-height: 1;
+  .symbol {
+    margin-right: .15em;
+  }
+  .fraction {
+    font-weight: $font-normal;
+    margin-right: .05em;
+  }
+  
+  .cents {
+    font-size: .75em;
+    font-weight: $font-light;
+    vertical-align: top;
+  }
+  
+  .line {
+    top: .45em;
+    left: 0;
+    right: 0;
+    height: 1px;
+    position: absolute;
+    background-color: currentColor;
+  }
+}

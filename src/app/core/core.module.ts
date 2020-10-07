@@ -5,9 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-/** MODULES */
+/** MODULES & THIRDS */
 import { CoreMaterialModule } from './core-material.module';
 import { StoreModule } from '@store/store.module';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 /** DECLARABLES */
 import { CORE_COMPONENTS } from './components';
 /** SERVICES */
@@ -29,6 +30,8 @@ const coreDeclarables = [
 
     CoreMaterialModule,
     StoreModule,
+
+    SweetAlert2Module.forRoot()
   ],
   declarations: [ coreDeclarables ],
   exports: [

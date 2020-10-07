@@ -71,26 +71,8 @@ $height: 336px;
         opacity: 0;
         transform: translate3d(0, -5px, 0);
         transition: all .15s ease-in-out;
-        .price {
-          color: $gray;
-          margin: 0;
-          display: inline-block;
-          position: relative;
-          font-size: 14px;
-          align-items: center;
-          line-height: 1;
-          font-weight: $font-normal;
-          .dollar { margin-right: 2px; }
-          &:after {
-            top: 48%;
-            width: 100%;
-            height: 1px;
-            display: block;
-            content: "";
-            position: absolute;
-            background-color: $gray;
-          }
-        }
+        color: $gray;
+        font-size: 14px;
       }
 
       .final-price {
@@ -99,10 +81,7 @@ $height: 336px;
         display: flex;
         font-size: 24px;
         align-items: center;
-        font-weight: $font-normal;
-        line-height: 1;
         margin-bottom: 4px;
-        .dollar { margin-right: 2px; }
         .discount {
           color: $accent-dark;
           font-size: 14px;
@@ -129,7 +108,6 @@ $height: 336px;
         opacity: 0;
         transform: translate3d(0, 16px, 0);
         transition: all .15s ease-in-out;
-        .mat-icon { margin-right: 4px; }
       }
     }
   }

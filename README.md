@@ -14,7 +14,7 @@ Antes de empezar, asegúrese de que su entorno de desarrollo incluya `Node.js`, 
 La aplicación fue desarrollada usando el [CLI](https://cli.angular.io/) de Angular, por esto se recomienda tenerlo previamente instalado.
 
 ```sh
-npm iinstall -g @angular/cli # Instala el CLI de angular de manera global
+npm install -g @angular/cli  # Instala el CLI de angular de manera global
 npm install                  # Instala todas las dependencias del proyecto
 ```
 

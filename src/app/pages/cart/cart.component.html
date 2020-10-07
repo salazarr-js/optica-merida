@@ -1,3 +1,67 @@
-<h1>Mi Carrito</h1>
+<div class="container cart--container">
 
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, atque quae maxime quo aut assumenda adipisci aperiam qui quam hic et tempore ex ad iste quasi? Labore quos pariatur excepturi!</p>
+  <h1 class="cart--title">Carrito</h1>
+
+  <div class="cart--products-container" *ngIf="false; else emptyState">
+    <ul class="cart--products">
+      <li class="cart--product" *ngFor="let p of [1, 2]">
+
+        <div class="image"></div>
+
+        <div class="detail">
+          <a [routerLink]="['/', 'producto', 1]">Anteojos Ray Ban 3025/002/4J55 Espejado</a>
+          <ul class="attributes">
+            <li><b>Color:</b> Negro</li>
+            <li><b>Tipo:</b> Cuadrado</li>
+            <li><b>Sexo:</b> Unisex</li>
+            <li><b>SKU</b> 303506</li>
+          </ul>
+
+          <div class="actions">
+            <button mat-button color="primary">Eliminar</button>
+          </div>
+        </div> 
+
+        <div class="amount">
+          <div class="remove-add">
+            <button mat-icon-button color="primary"><mat-icon fontSet="material-icons-outlined">remove</mat-icon></button>
+            <span>1</span>
+            <button mat-icon-button color="primary"><mat-icon fontSet="material-icons-outlined">add</mat-icon></button>
+          </div>
+          <p class="availables">18 Disponibles</p>
+        </div> 
+
+        <div class="price">
+          <div class="discount">
+            <span class="percent">-20%</span>
+            <product-price value="80.095" [lined]="true"></product-price>
+          </div>
+
+          <product-price class="total" value="60.45"></product-price>
+        </div> 
+
+      </li>
+    </ul>
+
+    <div class="cart--actions">
+      <button mat-stroked-button color="primary" routerLink="/" class="mr-3">
+        Volver
+      </button>
+      <button mat-flat-button color="primary">Comprar</button>
+    </div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <ng-template #emptyState>
+    <div class="cart--empty">
+      <img src="assets/images/empty.svg">
+      <h1 class="title">Tu carrito está vacío</h1>
+
+      <p class="text-center m-0">
+        <button mat-stroked-button color="primary" routerLink="/">
+          Regresar al inicio
+        </button>
+      </p>
+    </div>
+  </ng-template>
+</div>

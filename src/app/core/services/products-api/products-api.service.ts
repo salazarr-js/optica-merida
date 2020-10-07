@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ApiResponse } from '@models/api-response';
 // SERVICES
 import { ApiService } from '@services/api/api.service';
+import { CartProduct } from '@app/models/product';
 
 /** SERVICE TO GET ALL PRODUCTS DATA */
 @Injectable()
@@ -26,11 +27,11 @@ export class ProductsApiService {
 
   /** GET SOME PRODUCTS DETAIL FROM API */
   public getProducts(products: number[]): Observable<ApiResponse> {
-    return this.api.post(`products`, { products });
+    return this.api.post(`products/detail`, { products });
   }
 
   /** BUY SOME PRODUCTS */
-  public buyProducts(products: number[]): Observable<ApiResponse> {
+  public buyProducts(products: CartProduct[]): Observable<ApiResponse> {
     return this.api.post(`products/buy`, { products });
   }
 }

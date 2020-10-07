@@ -24,8 +24,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.productsApi.getAll()
     .pipe( untilDestroyed(this) )
-    .subscribe(products => {
-      this.products = products.data;
+    .subscribe(response => {
+      this.products = response.data.products;
     })
   }
 

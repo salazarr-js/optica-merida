@@ -32,7 +32,7 @@ export class ProductCardComponent implements OnInit {
   /** RETURN THE TOTAL FINAL PRICE */
   public get finalPrice(): number {
     const p = this.product;
-    return (1 - p.discount/100) * p.price;
+    return (1 - (p.discount || 0)/100) * p.price;
   }
 
   /** RETURN FIRST 2 IMAGES */
@@ -48,7 +48,10 @@ export class ProductCardComponent implements OnInit {
   }
 
   /** ADD PRODUCT TO CART */
-  addToCart(): void {
+  addToCart(ev): void {
+    ev.preventDefault();
+    ev.stopPropagation();
+
     this.store.dispatch( new AddProduct(this.product.id || 1) );
   }
 }

@@ -1,5 +1,173 @@
 @import "variables";
 
 :host {
+  padding: 32px 0;
+  .cart--container {
+    padding: 48px;
+    box-shadow: 0 1px 1px 0 rgba($darkest, .1), 0 -1px 2px 0 rgba($darkest, .1);
+    box-shadow: 0 1px 2px 0 rgba($darkest, .3);
+    border-radius: 4px;
+    background-color: $white;
 
+    .cart--title {
+      color: $dark;
+      margin: 0;
+      font-size: 32px;
+      font-weight: $font-light;
+      line-height: 1;
+      // margin-bottom: 32px;
+      &:after {
+        width: 100%;
+        height: 1px;
+        content: '';
+        display: block;
+        margin-top: 8px;
+        background-color: $gray-lightest;
+      }
+    }
+
+    .cart--products-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .cart--products {
+      margin: 0;
+      padding: 0;
+      display: block;
+      list-style: none;
+      .cart--product {
+        display: flex;
+        padding: 32px 0;
+        transition: all .15s ease-in-out;
+        border-bottom: 1px solid $gray-lightest;
+        &:last-child { border-bottom: none; }
+        &:hover { background-color: $lightest; }
+        .image {
+          width: 96px;
+          height: 96px;
+          background-color: $gray;
+        }
+
+        .detail {
+          flex: 1;
+          padding: 0 32px;
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          a {
+            color: $dark;
+            margin: 4px 0 8px;
+            display: block;
+            font-size: 18px;
+            font-weight: $font-bold;
+            line-height: 1;
+            text-decoration: none;
+          }
+
+          ul.attributes {
+            color: $gray;
+            padding: 0;
+            display: flex;
+            margin: 0 -16px;
+            li {
+              display: block;
+              padding: 0 16px;
+              line-height: 1;
+              font-size: 14px;
+              border-right: 1px solid $gray-lightest;
+              font-weight: $font-light;
+              b { font-weight: $font-normal; color: $gray-dark; }
+              &:last-child { border-right: none; }
+            }
+          }
+
+          .actions {
+            margin-left: -16px;
+          }
+
+        }
+
+        .amount {
+          padding: 0 32px;
+          align-self: center;
+          // text-align: center;
+          .remove-add {
+            height: 48px;
+            border: 1px solid $gray-lightest;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            justify-content: center;
+            span {
+              color: $gray;
+              margin: 0 8px;
+              font-size: 16px;
+              line-height: 1;
+              font-weight: $font-normal;
+            }
+            .mat-icon { font-size: 16px; }
+          }
+          .availables {
+            color: $gray-light;
+            margin:0;
+            font-size: 14px;
+            line-height: 1;
+          }
+        }
+
+        .price { 
+          padding: 0 0 0 32px;
+          .discount {
+            color: $gray;
+            font-size: 14px;
+            text-align: right;
+            font-weight: $font-normal;
+            margin-bottom: 8px;
+            .percent {
+              color: $accent-dark;
+              margin-right: 8px;
+            }
+          }
+          .total {
+            color: $dark;
+            font-size: 24px;
+          }
+        }
+
+      }
+    }
+
+    .cart--actions {
+      bottom: 0;
+      margin: 0 -48px;
+      z-index: 99;
+      padding: 32px 48px;
+      position: sticky;
+      text-align: right;
+      border-top: 1px solid $gray-lightest;
+      background-color: $white;
+    }
+
+    .cart--empty {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      img {
+        margin: 0 auto;
+        height: 35vh;
+        display: block;
+      }
+      .title {
+        color: $dark;
+        margin: 32px;
+        font-size: 32px;
+        text-align: center;
+        font-weight: $font-light;
+      }
+    }
+  }
 }
