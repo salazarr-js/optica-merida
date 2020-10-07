@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://fcb10c598c34.ngrok.io/api/',
+  apiUrl: 'https://c857245af423.ngrok.io/api/',
 
   ngxsLogger: true
 };

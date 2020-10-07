@@ -25,11 +25,9 @@
     align-items: center;
     text-decoration: none;
     &:hover {
-      .navbar-brand--logo {
-        transform: scale3d(1.05, 1.05, 1);
-      }
       .navbar-brand--text {
         opacity: 1;
+        transform: translate3d(8px, 0, 0);
       }
     }
     .navbar-brand--logo {
@@ -44,9 +42,10 @@
       opacity: .8;
       display: inline-block;
       font-size: 24px;
+      transform: translate3d(0, 0, 0);
+      transition: all .15s ease-in-out;
       line-height: 1;
       font-weight: $font-normal;
-      transition: all .15s ease-in-out;
     }
   }
 
