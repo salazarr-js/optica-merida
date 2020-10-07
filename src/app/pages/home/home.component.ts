@@ -17,6 +17,8 @@ import { SetLoading } from '@app/core/store/loading';
 export class HomeComponent implements OnInit {
   public products: Product[] = [];
 
+  public bgImg: string
+
   /** */
   constructor(
     private productsApi: ProductsApiService,
@@ -25,6 +27,7 @@ export class HomeComponent implements OnInit {
 
   /** */
   ngOnInit(): void {
+    this.getBgImg();
     this.store.dispatch( new SetLoading(true) );
 
     this.productsApi.getAll()
@@ -41,4 +44,10 @@ export class HomeComponent implements OnInit {
     return product.id;
   }
 
+
+  getBgImg(): void {
+    let type = Math.random() > .5 ? 'frame' : 'sun';
+    let num = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
+    this.bgImg =`url(/assets/images/${type}-${num}.jpg)`;
+  }
 }
