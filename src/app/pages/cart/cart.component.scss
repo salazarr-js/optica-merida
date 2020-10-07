@@ -89,15 +89,14 @@
 
         .amount {
           padding: 0 32px;
-          align-self: center;
-          // text-align: center;
+          text-align: center;
           .remove-add {
             height: 48px;
             border: 1px solid $gray-lightest;
             display: flex;
             align-items: center;
             border-radius: 4px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             justify-content: center;
             span {
               color: $gray;
@@ -147,6 +146,19 @@
       text-align: right;
       border-top: 1px solid $gray-lightest;
       background-color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .total {
+        color: $dark;
+        margin: 0;
+        font-size: 24px;
+        font-weight: $font-normal;
+        line-height: 1;
+        span {
+          margin-right: 16px;
+        }
+      }
     }
 
     .cart--empty {

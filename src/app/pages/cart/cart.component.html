@@ -2,9 +2,9 @@
 
   <h1 class="cart--title">Carrito</h1>
 
-  <div class="cart--products-container" *ngIf="false; else emptyState">
+  <div class="cart--products-container" *ngIf="true; else emptyState">
     <ul class="cart--products">
-      <li class="cart--product" *ngFor="let p of [1, 2]">
+      <li class="cart--product" *ngFor="let p of [1, 2, 3,4,5,6]">
 
         <div class="image"></div>
 
@@ -44,9 +44,13 @@
     </ul>
 
     <div class="cart--actions">
-      <button mat-stroked-button color="primary" routerLink="/" class="mr-3">
-        Volver
-      </button>
+      <h2 class="total">
+        <span>Total</span>
+        <product-price value="50.00"></product-price>
+      </h2>
+
+      <div class="spacer"></div>
+
       <button mat-flat-button color="primary">Comprar</button>
     </div>
   </div>

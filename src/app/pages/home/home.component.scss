@@ -12,4 +12,14 @@
     font-weight: $font-light;
     margin-bottom: 32px;
   }
+
+  .filters {
+    .filters--title {
+      color: $gray;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: $font-normal;
+    }
+  }
 }
