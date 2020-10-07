@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 /** CORE MATERIAL MODULES */
@@ -12,7 +13,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatProgressBarModule
   ]
 })
 export class CoreMaterialModule { }
