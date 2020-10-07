@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { SharedModule } from '@shared/shared.module';
 
 import { HomeComponent } from './home.component';
@@ -9,7 +8,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent }
 ];
 
-/** HOME LAZY PAGE MODULE */
+/** HOME PAGE LAZY MODULE */
 @NgModule({
   declarations: [HomeComponent],
   imports: [

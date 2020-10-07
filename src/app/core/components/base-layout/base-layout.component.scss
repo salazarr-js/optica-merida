@@ -8,7 +8,9 @@
 
   main {
     flex: 1;
-    margin-top: 52px;
+    display: flex;
+    margin-top: 56px;
+    flex-direction: column;
   }
 
   footer {
