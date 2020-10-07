@@ -55,8 +55,8 @@ $height: 336px;
         background-position: center;
         &.last {
           opacity: 0;
-          transform: translate3d(0, -16px, 0) scale3d(1.1, 1.1, 1);
-          // transform: translate3d(0, -16px, 0) scale3d(.9, .9, 1);
+          // transform: translate3d(0, -16px, 0) scale3d(1.1, 1.1, 1);
+          transform: translate3d(0, -16px, 0) scale3d(.9, .9, 1);
         }
       }
     }

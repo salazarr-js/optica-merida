@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 52px;
+  height: 56px;
   z-index: 999;
   display: block;
   position: fixed;
@@ -21,16 +21,32 @@
   }
 
   .navbar-brand {
-    color: $white;
-    font-size: 18px;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    span {
-      display: inline-block;
-      vertical-align: middle;
+    &:hover {
+      .navbar-brand--logo {
+        transform: scale3d(1.05, 1.05, 1);
+      }
+      .navbar-brand--text {
+        opacity: 1;
+      }
     }
     .navbar-brand--logo {
-      font-size: 22px;
+      height: 48px; 
+      display: inline-block;
       margin-right: 8px;
+      transform: scale3d(1, 1, 1);
+      transition: all .15s ease-in-out;
+    }
+    .navbar-brand--text {
+      color: $white;
+      opacity: .8;
+      display: inline-block;
+      font-size: 24px;
+      line-height: 1;
+      font-weight: $font-normal;
+      transition: all .15s ease-in-out;
     }
   }
 
