@@ -70,6 +70,14 @@ export class CartState {
   static isLoading(state: CartStateModel): boolean {
     return state.loading;
   }
+  
+  /** RETURN IF IS A VALID BUY */
+  @Selector<boolean>()
+  static isValid(state: CartStateModel): boolean {
+    return state.products.reduce((valid, p) => {
+      return valid ? p.amount <= p.stock : false;
+    }, true);
+  }
 
   /** GET/REQUEST ALL PLANS FROM API */
   @Action(GetDetailedProducts, { cancelUncompleted: true })

@@ -29,6 +29,7 @@ export class CartComponent implements OnInit {
   public products: Product[];
   /** */
   @Select(CartState.totalPrice) totalPrice$: Observable<number>;
+  @Select(CartState.isValid) isInvalid$: Observable<boolean>;
   /** */
   @Select(CartState.isLoading) isLoading$: Observable<boolean>;
 

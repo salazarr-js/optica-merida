@@ -32,11 +32,25 @@
 
               <span>{{ p.amount }}</span>
 
-              <button mat-icon-button color="primary" (click)="incProductAmount(p.id)">
+              <button
+                mat-icon-button
+                color="primary"
+                [disabled]="p.amount === p.stock"
+                (click)="incProductAmount(p.id)"
+              >
                 <mat-icon fontSet="material-icons-outlined">add</mat-icon>
               </button>
             </div>
-            <p class="availables">{{ p.stock }} Disponibles</p>
+
+            <p
+              class="availables"
+              [ngClass]="{ red: p.amount > p.stock }"
+              *ngIf="p.stock; else sinStock"
+            >{{ p.stock }} Disponibles</p>
+            <ng-template #sinStock>
+              <p class="availables red">Sin stock</p>
+            </ng-template>
+
           </div> 
 
           <div class="price">
@@ -59,7 +73,13 @@
 
         <div class="spacer"></div>
 
-        <button mat-flat-button color="primary" large (click)="buy()">Comprar</button>
+        <button 
+          mat-flat-button 
+          large 
+          color="primary" 
+          [disabled]="!(isInvalid$ | async)"
+          (click)="buy()"
+        >Comprar</button>
       </div>
 
       <swal
@@ -67,7 +87,7 @@
         title="Tu compra ha sido realizada con exito"
         icon="success"
         confirmButtonColor="#0096d1"
-        (confirm)="finishBuy()"
+        (close)="finishBuy()"
       ></swal>
     </div>
   </div>
