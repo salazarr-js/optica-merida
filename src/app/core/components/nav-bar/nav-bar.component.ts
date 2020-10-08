@@ -19,7 +19,7 @@ export class NavBarComponent implements OnInit {
   /** LOADING STATE */
   @Select(LoadingState.isLoading) isLoading$: Observable<boolean>;
   /** TOTAL OF PRODUCTS ON CART */
-  @Select(CartState.products) cartProducts$: Observable<number>;
+  @Select(CartState.totalProducts) products$: Observable<number>;
   // public cartProducts: number;
 
   /** REDIRECT URLs */

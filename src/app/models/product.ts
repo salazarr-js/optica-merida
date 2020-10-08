@@ -36,26 +36,19 @@ export enum ProductColors {
 
 /** PRODUCT MODEL */
 export interface Product {
-  id?: number;
-  cod: string;
-  description: string;
-  brand: string;
-  type: ProductTypes;
-  price: number;
-  stock: number;
-
-  discount: number;
-  gender: Genders;
-  subtype: ProductSubTypes;
-  color: string;
-
-  images: string[];
-
-  url?: string;
-}
-
-/** CART PRODUCT MODEL */
-export interface CartProduct {
   id: number;
-  amount: number
+
+  cod?: string;
+  description?: string;
+  brand?: string;
+  type?: ProductTypes;
+  price?: number;
+  stock?: number;
+  discount?: number;
+  gender?: Genders;
+  subtype?: ProductSubTypes;
+  color?: string;
+  images?: string[];
+
+  amount?: number;
 }

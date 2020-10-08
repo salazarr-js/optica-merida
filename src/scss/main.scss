@@ -5,6 +5,9 @@
 
 /**    */
 .mat-button, .mat-flat-button {
+  &[large] {
+    padding: 0 32px;
+  }
   .mat-button-wrapper {
     height: 100%;
     display: flex;

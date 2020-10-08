@@ -9,6 +9,7 @@ import { SharedMaterialModule } from './shared-material.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 /** DECLARABLES */
 import { SHARED_COMPONENTS } from './components';
+import { SHARED_DIRECTIVES } from './directives';
 
 
 /**
@@ -28,6 +29,7 @@ const sharedModules = [
 /** ALL SHARED COMPONENTS, DIRECTIVES, PIPES TO DECLARE & EXPORT */
 const sharedDeclarables = [
   SHARED_COMPONENTS,
+  SHARED_DIRECTIVES
 ];
 
 

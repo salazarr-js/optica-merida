@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 import { Store } from '@ngxs/store';
-import { Product } from '@app/models/product';
-import { AddProduct } from '@app/core/store/cart';
-import { ROUTES_NAMES } from '@app/routes/routes';
+import { Product } from '@models/product';
+import { AddProduct } from '@core/store/cart';
+import { ROUTES_NAMES } from '@routes/routes';
+
+import { applyDiscount } from '@helpers/index';
 
 
 /** PRODUCT CARD COMPONENT */
@@ -31,8 +33,7 @@ export class ProductCardComponent implements OnInit {
 
   /** RETURN THE TOTAL FINAL PRICE */
   public get finalPrice(): number {
-    const p = this.product;
-    return (1 - (p.discount || 0)/100) * p.price;
+    return applyDiscount(this.product.price, this.product.amount);
   }
 
   /** RETURN FIRST 2 IMAGES */

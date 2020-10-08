@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://0cbf8034edc2.ngrok.io/api/',
+  apiUrl: 'https://opticamerida-veservices.pagekite.me/api/',
   ngxsLogger: true
 };
 
