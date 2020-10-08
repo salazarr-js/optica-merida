@@ -1,8 +1,8 @@
 /** PRODUCT TYPES */
 export enum ProductTypes {
-  frame   = 'armazon',
-  contact = 'contacto',
-  sun     = 'sol'
+  frame   = 'frame',
+  contact = 'contact',
+  sun     = 'sun'
 }
 
 /** GENDERS */

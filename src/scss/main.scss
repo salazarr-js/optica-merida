@@ -5,8 +5,21 @@
 
 /**    */
 .mat-button, .mat-flat-button {
-  &[large] {
-    padding: 0 32px;
+  transition: all .3s ease-in-out;
+
+  &[large] { padding: 0 32px; }
+  &[block] {
+    width: 100%;
+    display: block;
+  }
+  &[text-left] {
+    .mat-button-wrapper {
+      justify-content: start;
+    }
+  }
+  &.active {
+    color: $white;
+    background-color: $primary;
   }
   .mat-button-wrapper {
     height: 100%;

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import { ProductsApiService } from '@app/core/services';
 // MODELS
-import { Product } from '@app/models/product';
-import { Store } from '@ngxs/store';
-import { SetLoading } from '@app/core/store/loading';
+import { Select, Store } from '@ngxs/store';
+import { GetAllProducts, ProductsState, SetTypeFilter } from '@store/products';
+import { Product, ProductTypes } from '@models/product';
 
 /** HOME PAGE COMPONENT */
 @UntilDestroy()
@@ -15,28 +14,27 @@ import { SetLoading } from '@app/core/store/loading';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public products: Product[] = [];
-
+  /** */
   public bgImg: string
+  /** */
+  public productTypes = ProductTypes;
+
+  /** */
+  @Select(ProductsState.filteredProducts) products$: Product[] ;
+  /** */
+  @Select(ProductsState.typeFilter) typeFilter$: ProductTypes;
+
 
   /** */
   constructor(
-    private productsApi: ProductsApiService,
     private store: Store
   ) { }
 
   /** */
   ngOnInit(): void {
     this.getBgImg();
-    this.store.dispatch( new SetLoading(true) );
 
-    this.productsApi.getAll()
-    .pipe( untilDestroyed(this) )
-    .subscribe(response => {
-      this.products = response.data.products;
-
-      this.store.dispatch( new SetLoading(false) );
-    })
+    this.store.dispatch( new GetAllProducts() );
   }
 
   /** */
@@ -45,9 +43,16 @@ export class HomeComponent implements OnInit {
   }
 
 
+  /** */
   getBgImg(): void {
     let type = Math.random() > .5 ? 'frame' : 'sun';
     let num = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
-    this.bgImg =`url(/assets/images/${type}-${num}.jpg)`;
+
+    this.bgImg =`assets/images/${type}-${num}.jpg`;
+  }
+
+  /** */
+  public setTypeFilter(filter: ProductTypes): void {
+    this.store.dispatch( new SetTypeFilter(filter) );
   }
 }

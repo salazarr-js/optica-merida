@@ -13,6 +13,7 @@ import { environment as env } from '@env/environment';
 // STATES
 import { CartState } from './cart';
 import { LoadingState } from './loading';
+import { ProductsState } from './products';
 
 /** DINAMYC NGXS PLUGINS BY ENVIROMENT */
 const NGXS_PLUGINS = env.production ? [] : [
@@ -27,7 +28,7 @@ const NGXS_PLUGINS = env.production ? [] : [
     NgxsModule.forRoot([
       CartState,
       LoadingState,
-      
+      ProductsState
     ], { developmentMode: !env.production }),
     NgxsStoragePluginModule.forRoot(),
     NgxsResetPluginModule.forRoot(),
