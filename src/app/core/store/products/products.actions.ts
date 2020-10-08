@@ -16,3 +16,8 @@ export class SetTypeFilter {
   public static readonly type = '[Products] Set TypeFilter';
   constructor(public typeFilter: ProductTypes) {}
 }
+
+/** SET/REMOVE TYPE FILTER TO STATE */
+export class RemoveTypeFilter {
+  public static readonly type = '[Products] Remove TypeFilter';
+}

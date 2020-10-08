@@ -3,7 +3,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 // MODELS
 import { Select, Store } from '@ngxs/store';
-import { GetAllProducts, ProductsState, SetTypeFilter } from '@store/products';
+import { GetAllProducts, ProductsState, RemoveTypeFilter, SetTypeFilter } from '@store/products';
 import { Product, ProductTypes } from '@models/product';
 
 /** HOME PAGE COMPONENT */
@@ -18,11 +18,10 @@ export class HomeComponent implements OnInit {
   public bgImg: string
   /** */
   public productTypes = ProductTypes;
-
+  /** */
+  public typeFilter: ProductTypes;
   /** */
   @Select(ProductsState.filteredProducts) products$: Product[] ;
-  /** */
-  @Select(ProductsState.typeFilter) typeFilter$: ProductTypes;
 
 
   /** */
@@ -35,6 +34,10 @@ export class HomeComponent implements OnInit {
     this.getBgImg();
 
     this.store.dispatch( new GetAllProducts() );
+
+    this.store.select( ProductsState.typeFilter )
+      .pipe( untilDestroyed(this) )
+      .subscribe(typeFilter => this.typeFilter = typeFilter);
   }
 
   /** */
@@ -53,6 +56,10 @@ export class HomeComponent implements OnInit {
 
   /** */
   public setTypeFilter(filter: ProductTypes): void {
-    this.store.dispatch( new SetTypeFilter(filter) );
+    if ( this.typeFilter === filter) {
+      this.store.dispatch( new RemoveTypeFilter() );
+    } else {
+      this.store.dispatch( new SetTypeFilter(filter) );
+    }
   }
 }

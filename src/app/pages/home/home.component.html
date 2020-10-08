@@ -13,21 +13,21 @@
           <h3>Tipo de lente</h3>
           <button 
             mat-button color="primary" large block text-left
-            [ngClass]="{ active: (typeFilter$ | async) == productTypes.frame }"
+            [ngClass]="{ active: typeFilter == productTypes.frame }"
             (click)="setTypeFilter(productTypes.frame)"
           >
             Armazones de receta
           </button>
           <button
             mat-button color="primary" large block text-left
-            [ngClass]="{ active: (typeFilter$ | async) == productTypes.sun }"
+            [ngClass]="{ active: typeFilter == productTypes.sun }"
             (click)="setTypeFilter(productTypes.sun)"
           >
             Lentes de Sol
           </button>
           <button
             mat-button color="primary" large block text-left
-            [ngClass]="{ active: (typeFilter$ | async) == productTypes.contact }"
+            [ngClass]="{ active: typeFilter == productTypes.contact }"
             (click)="setTypeFilter(productTypes.contact)"
           >
             Lentes de Contacto

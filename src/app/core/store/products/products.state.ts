@@ -15,7 +15,7 @@ import { ProductsStateModel } from './products.model';
 import { ProductsApiService } from '@services/products-api/products-api.service';
 // ACTIONS
 import {
-  GetAllProducts, SetProducts, SetTypeFilter
+  GetAllProducts, RemoveTypeFilter, SetProducts, SetTypeFilter
 } from './products.actions';
 
 
@@ -51,7 +51,7 @@ export class ProductsState {
       } else {
         return false;
       }
-    })
+    });
   }
 
   /** RETURN SELECTED TYPE FILTER */
@@ -87,5 +87,11 @@ export class ProductsState {
   @Action(SetTypeFilter,)
   public setTypeFilter(ctx: StateContext<ProductsStateModel>, { typeFilter }: SetTypeFilter) {
     ctx.patchState({ ...ctx.getState(), typeFilter })
+  }
+
+  /** SET/SAVE TYPE FILTER TO STATE */
+  @Action(RemoveTypeFilter)
+  public removeTypeFilter(ctx: StateContext<ProductsStateModel>) {
+    ctx.patchState({ ...ctx.getState(), typeFilter: null })
   }
 }
