@@ -79,6 +79,6 @@ export class ProductDetailComponent implements OnInit {
 
   /** */
   public addToCart(): void {
-    // this.store.dispatch( new AddProduct(this.id) )
+    this.store.dispatch( new AddProduct(this.product.id) );
   }
 }

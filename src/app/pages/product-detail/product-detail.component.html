@@ -6,7 +6,9 @@
       <div class="swiper-container swiper--container" swiper>
         <div class="swiper-wrapper">
           <div class="swiper-slide swiper--slide" *ngFor="let image of product.images">
-            <img [src]="image" class="swiper--img">
+            <div class="swipper--img-container">
+              <img [src]="image" class="swiper--img">
+            </div>
           </div>
         </div>
        
@@ -24,30 +26,39 @@
         <h2 class="title">{{ product.description }}</h2>
 
         <div class="price">
-          <div class="discount" *ngIf="product.discount > 0">
-            <span>{{ product.discount }}</span>
-            <product-price [value]="priceDiscount"></product-price>
-          </div>
+          <product-price 
+            class="discount" 
+            *ngIf="product.discount > 0" 
+            [value]="priceDiscount" 
+            [lined]="true"
+          ></product-price>
 
-          <product-price [value]="product.price" class="final"></product-price>
+          <div class="final">
+            <product-price [value]="product.price"></product-price>
+            <span *ngIf="product.discount > 0">{{ product.discount }}% Descuento</span>
+          </div>
         </div>
 
         <ul class="attributes">
           <li><b>Color: </b> {{ product.color }}</li>
           <li><b>Tipo: </b> {{ product.type }}</li>
           <li><b>Genero: </b> {{ product.gender }}</li>
-          <li><b>Codigo: </b> {{ product.cod.substring(4) }}</li>
+          <li><b>Codigo: </b> {{ product.cod }}</li>
         </ul>
 
         <div class="actions">
-          <div *ngIf="product.stock; else noAvailables">
-            <p>{{ product.stock }} Disponibles</p>
-          </div>
+          <p class="stock" *ngIf="product.stock; else noAvailables">{{ product.stock }} Disponibles</p>
           <ng-template #noAvailables>
-            <p>Sin stock</p>
+            <p class="stock">Sin stock</p>
           </ng-template>
 
-          <button mat-flat-button large color="primary" [disabled]="!product.stock">Agregar al carrito</button>
+          <button 
+            mat-flat-button 
+            large 
+            color="primary" 
+            [disabled]="!product.stock"
+            (click)="addToCart()"
+          >Agregar al carrito</button>
         </div>
       </div>
     </div>
