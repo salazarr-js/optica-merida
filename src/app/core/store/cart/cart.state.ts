@@ -64,6 +64,12 @@ export class CartState {
       return total + ( applyDiscount(p.price, p.discount) * p.amount );
     }, 0);
   }
+ 
+  /** RETURN TOTAL PRICE */
+  @Selector<boolean>()
+  static isLoading(state: CartStateModel): boolean {
+    return state.loading;
+  }
 
   /** GET/REQUEST ALL PLANS FROM API */
   @Action(GetDetailedProducts, { cancelUncompleted: true })

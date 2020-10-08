@@ -30,13 +30,15 @@ export class CartComponent implements OnInit {
   /** */
   @Select(CartState.totalPrice) totalPrice$: Observable<number>;
   /** */
-  @Select(LoadingState.isLoading) isLoading$: Observable<boolean>;
+  @Select(CartState.isLoading) isLoading$: Observable<boolean>;
 
   /** */
   constructor(
     private store: Store,
     private router: Router
-  ) { }
+  ) {
+    this.products = [];
+  }
 
   /** */
   ngOnInit(): void {
