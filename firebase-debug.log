@@ -1,0 +1,17 @@
+[debug] [2020-10-08T03:50:04.403Z] ----------------------------------------------------------------------
+[debug] [2020-10-08T03:50:04.405Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-10-08T03:50:04.405Z] CLI Version:   8.11.2
+[debug] [2020-10-08T03:50:04.405Z] Platform:      win32
+[debug] [2020-10-08T03:50:04.405Z] Node Version:  v12.18.1
+[debug] [2020-10-08T03:50:04.406Z] Time:          Thu Oct 08 2020 00:50:04 GMT-0300 (GMT-03:00)
+[debug] [2020-10-08T03:50:04.406Z] ----------------------------------------------------------------------
+[debug] [2020-10-08T03:50:04.406Z] 
+[debug] [2020-10-08T03:50:04.415Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-10-08T03:50:04.415Z] > authorizing via signed-in user
+[debug] [2020-10-08T03:50:04.415Z] [iam] checking project optica-merida for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-10-08T03:50:04.417Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-10-08T03:50:04.417Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-10-08T03:50:04.595Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Thu, 08 Oct 2020 03:50:05 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-08T03:50:04.598Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/optica-merida:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
