@@ -7,7 +7,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 // STORE
 import { Store } from '@ngxs/store';
-import { AddProduct } from '@store/cart';
+import { AddProduct, CartState } from '@store/cart';
 import { SetLoading } from '@store/loading';
 // SERVICES & HELPERS
 import { ProductsApiService } from '@core/services';
@@ -26,8 +26,10 @@ import { ROUTES_NAMES } from '@routes/routes';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  /** DETAILEDD PRODUCT */
+  /** DETAILED PRODUCT */
   public product: Product;
+  /**  */
+  public canAdd: boolean;
 
   /** */
   constructor(
@@ -36,6 +38,7 @@ export class ProductDetailComponent implements OnInit {
     private store: Store,
     private productsApi: ProductsApiService
   ) { 
+    this.canAdd = false;
   }
 
   /** */
@@ -48,10 +51,13 @@ export class ProductDetailComponent implements OnInit {
       switchMap(id => this.productsApi.getProduct(id))
     ).subscribe(response => {
       this.product = response.data.product;
+      this.validateStock();
 
       this.store.dispatch( new SetLoading(false) );
+    }, error => {
+      this.router.navigate(['/', ROUTES_NAMES.NOT_FOUND]);
+      this.store.dispatch( new SetLoading(false) );
     });
-
   }
 
   /** GET PRODUCT ID FORM URL */
@@ -65,11 +71,35 @@ export class ProductDetailComponent implements OnInit {
         } else {
           console.error(`ERROR WITH PARAM ID [${params['id']}], REDIRECTING...`);
           this.router.navigate(['/', ROUTES_NAMES.NOT_FOUND]);
-          this.store.dispatch( new SetLoading(false) );
           return null; 
         }
       })
     );
+  }
+
+  /** */
+  public validateStock(): void {
+    this.store.select( CartState.products )
+    .pipe( untilDestroyed(this) )
+    .subscribe(products => {
+      const p = products.find(p => this.product.id === p.id) || null;
+      
+      if ( p ) {
+        if ( this.product.stock > p.amount ) {
+          this.canAdd = true;
+        } else {
+          this.canAdd = false;
+        }
+      } else if ( this.product.stock ){
+        this.canAdd = true;
+      } else {
+        this.canAdd = false;
+      }
+    });
+  }
+
+  lorem(products: Product[]): void {
+    
   }
 
   /** */

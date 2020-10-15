@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://d4d7b0fdb0ed.ngrok.io/api/',
+  apiUrl: 'https://61d3baaa466a.ngrok.io/api/',
   ngxsLogger: true,
 
   firebase: {

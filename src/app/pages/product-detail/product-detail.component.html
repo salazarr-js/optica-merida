@@ -56,7 +56,7 @@
             mat-flat-button 
             large 
             color="primary" 
-            [disabled]="!product.stock"
+            [disabled]="!canAdd"
             (click)="addToCart()"
           >Agregar al carrito</button>
         </div>
