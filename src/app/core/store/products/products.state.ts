@@ -80,18 +80,18 @@ export class ProductsState {
   /** SET/SAVE PRODUCTS WITH DETAILS TO STATE */
   @Action(SetProducts,)
   public setProducts(ctx: StateContext<ProductsStateModel>, { products }: SetProducts) {
-    ctx.patchState({ ...ctx.getState(), products })
+    ctx.patchState({ ...ctx.getState(), products });
   }
 
   /** SET/SAVE TYPE FILTER TO STATE */
   @Action(SetTypeFilter,)
   public setTypeFilter(ctx: StateContext<ProductsStateModel>, { typeFilter }: SetTypeFilter) {
-    ctx.patchState({ ...ctx.getState(), typeFilter })
+    ctx.patchState({ ...ctx.getState(), typeFilter });
   }
 
   /** SET/SAVE TYPE FILTER TO STATE */
   @Action(RemoveTypeFilter)
   public removeTypeFilter(ctx: StateContext<ProductsStateModel>) {
-    ctx.patchState({ ...ctx.getState(), typeFilter: null })
+    ctx.patchState({ ...ctx.getState(), typeFilter: null });
   }
 }

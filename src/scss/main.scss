@@ -4,7 +4,7 @@
 @import './base/';     // BASE STILES, BASICS OVERWRITES ...
 
 /**    */
-.mat-button, .mat-flat-button {
+.mat-button, .mat-flat-button, .mat-stroked-button {
   transition: all .3s ease-in-out;
 
   &[large] { padding: 0 32px; }

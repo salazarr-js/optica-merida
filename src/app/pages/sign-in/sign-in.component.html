@@ -1,15 +1,20 @@
 <div class="container">
   <img src="assets/images/auth.svg">
   
-  <h1>Inicio Sesión</h1>
+  <div class="title">
+    <h1>Su compra está protegida</h1>
+    <p>Para finalizar su compra, debe iniciar sesión.</p>
+  </div>
   
-  <p class="text-center">
-    <button mat-stroked-button color="primary" routerLink="/" class="mr-3">
-      Regresar al inicio
-    </button>
 
-    <button mat-flat-button color="primary" (click)="signIn()">
+  <p class="buttons">
+    <button mat-flat-button large block color="primary" (click)="signIn()" class="mb-2">
       Iniciar Sesión
     </button>
+
+    <button mat-stroked-button large block color="primary" routerLink="/">
+      Regresar al inicio
+    </button>
   </p>
+    
 </div>
