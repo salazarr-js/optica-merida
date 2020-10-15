@@ -36,7 +36,11 @@
                 "src/assets"
               ]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@firebase/auth",
+              "firebase/app"
+           ]
           },
           "configurations": {
             "production": {
@@ -127,8 +131,13 @@
               "devServerTarget": "merida-optics:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "merida-optics"
 }

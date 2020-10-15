@@ -55,6 +55,31 @@
     display: block;
   }
 
+
+  .navbar-user {
+    cursor: pointer;
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    user-select: none;
+    margin-right: 16px;
+    .navbar-user--img {
+      margin-right: 8px;
+      height: 40px;
+      width: 40px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+    }
+    .navbar-user--name {
+      color: $white;
+      margin: 0;
+      font-size: 16px;
+      font-weight: $font-normal;
+      line-height: 1;
+    }
+  }
+
   .navbar-cart {
     color: white;
     ::ng-deep .mat-badge-content {

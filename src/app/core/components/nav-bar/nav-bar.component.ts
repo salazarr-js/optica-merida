@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { AngularFireAuth } from '@angular/fire/auth';
 // STORE
 import { Select } from '@ngxs/store'
 import { CartState } from '@store/cart';
@@ -20,7 +21,9 @@ export class NavBarComponent implements OnInit {
   @Select(LoadingState.isLoading) isLoading$: Observable<boolean>;
   /** TOTAL OF PRODUCTS ON CART */
   @Select(CartState.totalProducts) products$: Observable<number>;
-  // public cartProducts: number;
+  /** */
+  public user$: Observable<firebase.User>
+
 
   /** REDIRECT URLs */
   public urls = {
@@ -29,10 +32,17 @@ export class NavBarComponent implements OnInit {
   };
 
   /** */
-  constructor() { 
+  constructor(private auth: AngularFireAuth) {
+    this.user$ = this.auth.user;
   }
 
   /** */
   ngOnInit(): void {
+  }
+
+  /** */
+  singOut(): void {
+    console.log("CERRAR SESION");
+    this.auth.signOut();
   }
 }

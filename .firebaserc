@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "optica-merida"
+  },
+  "targets": {
+    "optica-merida": {
+      "hosting": {
+        "merida-optics": [
+          "optica-merida"
+        ]
+      }
+    }
   }
 }

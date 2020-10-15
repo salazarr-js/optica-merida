@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BaseLayoutComponent } from '@app/core/components/base-layout/base-layout.component';
-import { pathToFileURL } from 'url';
+
+import { BaseLayoutComponent } from '@core/components/base-layout/base-layout.component';
 
 import { ROUTES_NAMES } from './routes';
 
@@ -20,9 +20,13 @@ const ROUTES: Routes = [
     path: ROUTES_NAMES.CART, 
     loadChildren: () => import('@pages/cart/cart.module').then(m => m.CartModule)
   },
+  {
+    path: ROUTES_NAMES.SIGN_IN,
+    loadChildren: () => import('@pages/sign-in/sign-in.module').then(m => m.SignInModule)
+  },
   { 
-    path: '404',
-    loadChildren: () => import('../pages/not-found/not-found.module').then(m => m.NotFoundModule)
+    path: ROUTES_NAMES.NOT_FOUND,
+    loadChildren: () => import('@pages/not-found/not-found.module').then(m => m.NotFoundModule)
   },
   { 
     path: '**', redirectTo: ROUTES_NAMES.NOT_FOUND

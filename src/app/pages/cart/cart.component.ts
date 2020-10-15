@@ -1,20 +1,25 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-
+/** THIRD */
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-
+/** STORE */
 import { Select, Store } from '@ngxs/store';
-import { LoadingState } from '@app/core/store/loading';
+import { SetLoading } from '@app/core/store/loading';
 import { StateReset } from 'ngxs-reset-plugin';
 import { 
   CartState, GetDetailedProducts,
   AddProduct, SubstractProduct, RemoveProduct, BuyProducts
 } from '@store/cart';
+/** MODELS */
 import { Product } from '@models/product';
-// HELPERS
+/** HELPERS */
 import { applyDiscount } from '@helpers/index';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ROUTES_NAMES } from '@app/routes/routes';
 
 /** CART PAGE COMPONENT*/
 @UntilDestroy()
@@ -36,6 +41,7 @@ export class CartComponent implements OnInit {
   /** */
   constructor(
     private store: Store,
+    private auth: AngularFireAuth, 
     private router: Router
   ) {
     this.products = [];
@@ -77,9 +83,27 @@ export class CartComponent implements OnInit {
 
   /** */
   buy(): void {
-    this.store.dispatch( new BuyProducts() )
-    .pipe( untilDestroyed(this) )
-    .subscribe(data =>  this.successSwal.fire());
+    this.store.dispatch( new SetLoading(true) );
+
+    this.auth.currentUser
+    .then(user => {
+
+      if ( user ) {
+        this.store.dispatch( new BuyProducts() )
+          .pipe( untilDestroyed(this) )
+          .subscribe(data =>  {
+            this.successSwal.fire();
+            this.store.dispatch( new SetLoading(false) );
+          });
+      } else {
+        this.router.navigate(['/', ROUTES_NAMES.SIGN_IN]);
+        this.store.dispatch( new SetLoading(false) );
+      }
+
+    }).catch(error => {
+      console.log("CURRENT USER ERROR", error);
+      this.store.dispatch( new SetLoading(false) );
+    });
   }
 
   /** */

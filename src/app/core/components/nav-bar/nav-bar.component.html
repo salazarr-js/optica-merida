@@ -8,6 +8,19 @@
 
   <span class="navbar-spacer"></span>
 
+  <!-- USER ACTION -->
+  <div *ngIf="user$ | async as user" >
+    <div class="navbar-user" [matMenuTriggerFor]="menu" matRipple >
+      <div class="navbar-user--img" [bg-image]="user.photoURL"></div>
+      <h3 class="navbar-user--name">{{ user.displayName }}</h3>
+    </div>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="singOut()">Cerrar sesión</button>
+    </mat-menu>
+  </div>
+  <!-- USER ACTION -->
+
   <button
     mat-icon-button
     class="navbar-cart"

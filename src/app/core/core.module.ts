@@ -8,15 +8,21 @@ import { HttpClientModule } from '@angular/common/http';
 /** MODULES & THIRDS */
 import { CoreMaterialModule } from './core-material.module';
 import { StoreModule } from '@store/store.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 /** DECLARABLES */
 import { CORE_COMPONENTS } from './components';
+import { CORE_DIRECTIVES } from './directives';
 /** SERVICES */
 import { CORE_SERVICES } from './services';
+/** */
+import { environment as env } from '@env/environment';
 
 /** ALL CORE `components`, `directives`, `pipes` TO DECLARE */
 const coreDeclarables = [
   CORE_COMPONENTS,
+  CORE_DIRECTIVES,
 ];
 
 
@@ -31,12 +37,17 @@ const coreDeclarables = [
     CoreMaterialModule,
     StoreModule,
 
+    AngularFireModule.initializeApp(env.firebase),
+    AngularFireAuthModule,
+    
     SweetAlert2Module.forRoot()
   ],
   declarations: [ coreDeclarables ],
   exports: [
     RouterModule,
-    CoreMaterialModule
+    CoreMaterialModule,
+
+    coreDeclarables
   ],
   providers: [
     CORE_SERVICES,
