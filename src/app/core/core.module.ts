@@ -8,8 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 /** MODULES & THIRDS */
 import { CoreMaterialModule } from './core-material.module';
 import { StoreModule } from '@store/store.module';
+/** FIREBASE */
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 /** DECLARABLES */
 import { CORE_COMPONENTS } from './components';

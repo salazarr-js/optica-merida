@@ -79,7 +79,7 @@
           color="primary" 
           [disabled]="!(isInvalid$ | async)"
           (click)="buy()"
-        >Comprar</button>
+        >{{ (auth.user | async) ? 'Comprar' : 'Iniciar sesión' }}</button>
       </div>
 
       <swal
