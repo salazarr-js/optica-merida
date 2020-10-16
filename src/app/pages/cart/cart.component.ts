@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+
+/** FIREBASE */
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireFunctions } from '@angular/fire/functions';
 /** THIRD */
 import { Observable } from 'rxjs';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 /** STORE */
@@ -16,10 +18,9 @@ import {
 } from '@store/cart';
 /** MODELS */
 import { Product } from '@models/product';
+import { ROUTES_NAMES } from '@app/routes/routes';
 /** HELPERS */
 import { applyDiscount } from '@helpers/index';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { ROUTES_NAMES } from '@app/routes/routes';
 
 /** CART PAGE COMPONENT*/
 @UntilDestroy()
@@ -42,7 +43,8 @@ export class CartComponent implements OnInit {
   constructor(
     private store: Store,
     private auth: AngularFireAuth, 
-    private router: Router
+    private router: Router,
+    private functions: AngularFireFunctions
   ) {
     this.products = [];
   }
@@ -110,5 +112,17 @@ export class CartComponent implements OnInit {
   finishBuy(): void {
     this.store.dispatch( new StateReset(CartState) );
     this.router.navigate(['/']);
+  }
+
+
+  /** */
+  sendEmail(): void {
+    const sendEmail = this.functions.httpsCallable('sendEmail')({
+      text: 'texto pepino',
+      subject: 'sujeto sabroso',
+
+    }).subscribe(response => {
+      console.warn("SEND EMAIL", );
+    });
   }
 }
