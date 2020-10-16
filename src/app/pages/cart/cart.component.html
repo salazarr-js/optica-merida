@@ -79,12 +79,13 @@
           color="primary" 
           [disabled]="!(isInvalid$ | async)"
           (click)="buy()"
-        >{{ (auth.user | async) ? 'Comprar' : 'Iniciar sesión' }}</button>
+        >{{ user ? 'Comprar' : 'Iniciar sesión' }}</button>
       </div>
 
       <swal
         #successSwal
-        title="Tu compra ha sido realizada con exito"
+        title="Su compra ha sido realizada con éxito"
+        text="El detalle de la compra ha sido enviado a su correo electrónico."
         icon="success"
         confirmButtonColor="#0096d1"
         (close)="finishBuy()"

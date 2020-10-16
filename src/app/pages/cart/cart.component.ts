@@ -19,6 +19,7 @@ import {
 import { Product } from '@models/product';
 import { ROUTES_NAMES } from '@app/routes/routes';
 /** HELPERS */
+import { EmailApiService } from '@app/core/services/email-api/email-api.service';
 import { applyDiscount } from '@helpers/index';
 
 /** CART PAGE COMPONENT*/
@@ -30,19 +31,20 @@ import { applyDiscount } from '@helpers/index';
 })
 export class CartComponent implements OnInit {
   @ViewChild('successSwal') private successSwal: SwalComponent;
-  /** */
-  public products: Product[];
-  /** */
+
   @Select(CartState.totalPrice) totalPrice$: Observable<number>;
   @Select(CartState.isValid) isInvalid$: Observable<boolean>;
-  /** */
   @Select(CartState.isLoading) isLoading$: Observable<boolean>;
+
+  public products: Product[];
+  public user : firebase.User
 
   /** */
   constructor(
-    private store: Store,
-    public auth: AngularFireAuth, 
-    private router: Router
+    private store   : Store,
+    private auth    : AngularFireAuth,
+    private router  : Router,
+    private emailApi: EmailApiService
   ) {
     this.products = [];
   }
@@ -54,6 +56,10 @@ export class CartComponent implements OnInit {
     this.store.select( CartState.products )
     .pipe( untilDestroyed(this) )
     .subscribe(products => this.products = products);
+    
+    this.auth.user
+    .pipe( untilDestroyed(this) )
+    .subscribe(user => this.user = user);
   }
 
    /** RETURN THE TOTAL FINAL PRICE */
@@ -85,43 +91,45 @@ export class CartComponent implements OnInit {
   buy(): void {
     this.store.dispatch( new SetLoading(true) );
 
-    this.auth.currentUser
-    .then(user => {
-
-      if ( user ) {
-        this.store.dispatch( new BuyProducts() )
-          .pipe( untilDestroyed(this) )
-          .subscribe(data =>  {
-            this.sendEmail();
-
-            this.successSwal.fire();
-            this.store.dispatch( new SetLoading(false) );
-          });
-      } else {
-        this.router.navigate(['/', ROUTES_NAMES.SIGN_IN]);
-        this.store.dispatch( new SetLoading(false) );
-      }
-
-    }).catch(error => {
-      console.log("CURRENT USER ERROR", error);
+    if ( this.user ) {
+      this.store.dispatch( new BuyProducts() )
+      .pipe( untilDestroyed(this) )
+      .subscribe(data =>  {
+        this.sendEmail();
+        this.successSwal.fire();
+      });
+    } else {
+      this.router.navigate(['/', ROUTES_NAMES.SIGN_IN]);
       this.store.dispatch( new SetLoading(false) );
-    });
+    }
   }
 
   /** */
   finishBuy(): void {
     this.store.dispatch( new StateReset(CartState) );
     this.router.navigate(['/']);
+    this.store.dispatch( new SetLoading(false) );
   }
 
 
   /** */
   sendEmail(): void {
-    console.log( "PRODUCTS", this.store.selectSnapshot( CartState.products ) );
-    
+    const mail = {
+      to: this.user.email,
+      name: this.user.displayName,
+      products: this.products,
+      total: this.store.selectSnapshot( CartState.totalPrice )
+    };
 
-    // name
-    // products
-    // total
+    this.emailApi.sendInvoiceEmail( mail )
+    .pipe()
+    .subscribe(
+      response => {
+        console.warn("RESPONSE", response);
+      }, error => {
+        console.error("ERROR", error);
+      }
+    );
+    
   }
 }

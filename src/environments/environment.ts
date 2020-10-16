@@ -4,9 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://61d3baaa466a.ngrok.io/api/',
   ngxsLogger: true,
-
+  
+  apiUrl: 'https://61d3baaa466a.ngrok.io/api/',
+  emailUrl: 'https://2b85cbef7118.ngrok.io/',
+  
   firebase: {
     apiKey: "AIzaSyDTLDZykHWTh_v5pynRFqnefULu7SfeDnc",
     authDomain: "optica-merida.firebaseapp.com",
