@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
+import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 // STORE
-import { Select } from '@ngxs/store'
+import { Select, Store } from '@ngxs/store'
 import { CartState } from '@store/cart';
-import { LoadingState } from '@store/loading';
+import { LoadingState, SetLoading } from '@store/loading';
 /** CONSTs & MODELS */
 import { ROUTES_NAMES } from '@routes/routes';
 
@@ -32,7 +32,7 @@ export class NavBarComponent implements OnInit {
   };
 
   /** */
-  constructor(private auth: AngularFireAuth) {
+  constructor(private auth: AngularFireAuth, private store: Store) {
     this.user$ = this.auth.user;
   }
 
@@ -42,7 +42,11 @@ export class NavBarComponent implements OnInit {
 
   /** */
   singOut(): void {
-    console.log("CERRAR SESION");
-    this.auth.signOut();
+    this.store.dispatch( new SetLoading(true) );
+    
+    this.auth.signOut().then(() => {
+      console.log("SIGN OUT SUCCESSFUL");
+      this.store.dispatch( new SetLoading(false) );
+    });
   }
 }

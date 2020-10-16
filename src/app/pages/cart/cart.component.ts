@@ -106,8 +106,8 @@ export class CartComponent implements OnInit {
 
   /** */
   finishBuy(): void {
-    this.store.dispatch( new StateReset(CartState) );
     this.router.navigate(['/']);
+    this.store.dispatch( new StateReset(CartState) );
     this.store.dispatch( new SetLoading(false) );
   }
 
