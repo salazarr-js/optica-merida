@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
   /** */
   constructor(
     private store: Store,
-    private auth: AngularFireAuth, 
+    public auth: AngularFireAuth, 
     private router: Router,
     private functions: AngularFireFunctions
   ) {
@@ -94,6 +94,8 @@ export class CartComponent implements OnInit {
         this.store.dispatch( new BuyProducts() )
           .pipe( untilDestroyed(this) )
           .subscribe(data =>  {
+            this.sendEmail();
+
             this.successSwal.fire();
             this.store.dispatch( new SetLoading(false) );
           });
@@ -117,12 +119,8 @@ export class CartComponent implements OnInit {
 
   /** */
   sendEmail(): void {
-    const sendEmail = this.functions.httpsCallable('sendEmail')({
-      text: 'texto pepino',
-      subject: 'sujeto sabroso',
+    console.log( "PRODUCTS", this.store.selectSnapshot( CartState.products ) );
 
-    }).subscribe(response => {
-      console.warn("SEND EMAIL", );
-    });
+
   }
 }

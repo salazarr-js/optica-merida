@@ -11,7 +11,6 @@ import { StoreModule } from '@store/store.module';
 /** FIREBASE */
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 /** DECLARABLES */
@@ -42,7 +41,6 @@ const coreDeclarables = [
 
     AngularFireModule.initializeApp(env.firebase),
     AngularFireAuthModule,
-    AngularFireFunctionsModule,
     
     SweetAlert2Module.forRoot()
   ],
