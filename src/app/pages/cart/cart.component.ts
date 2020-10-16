@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 /** FIREBASE */
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireFunctions } from '@angular/fire/functions';
 /** THIRD */
 import { Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -43,8 +42,7 @@ export class CartComponent implements OnInit {
   constructor(
     private store: Store,
     public auth: AngularFireAuth, 
-    private router: Router,
-    private functions: AngularFireFunctions
+    private router: Router
   ) {
     this.products = [];
   }
@@ -120,7 +118,10 @@ export class CartComponent implements OnInit {
   /** */
   sendEmail(): void {
     console.log( "PRODUCTS", this.store.selectSnapshot( CartState.products ) );
+    
 
-
+    // name
+    // products
+    // total
   }
 }
