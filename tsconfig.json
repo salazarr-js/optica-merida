@@ -27,6 +27,9 @@
     "lib": [
       "es2018",
       "dom"
-    ]
-  }
+    ],
+
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  },
 }
