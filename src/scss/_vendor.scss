@@ -1,12 +1,12 @@
 /** MATERIAL STYLES */
-@import '~@angular/material/theming';
-@include mat-core();
+@use '~@angular/material' as mat;
+@include mat.core();
 
-$merida-optics-primary: mat-palette($mat-light-blue);
-$merida-optics-accent: mat-palette($mat-teal, A400);
-$merida-optics-warn: mat-palette($mat-red);
+$merida-optics-primary: mat.define-palette(mat.$light-blue-palette);
+$merida-optics-accent: mat.define-palette(mat.$teal-palette, A400);
+$merida-optics-warn: mat.define-palette(mat.$red-palette);
 
-$merida-optics-theme: mat-light-theme((
+$merida-optics-theme: mat.define-light-theme((
   color: (
     primary: $merida-optics-primary,
     accent: $merida-optics-accent,
@@ -14,7 +14,7 @@ $merida-optics-theme: mat-light-theme((
   )
 ));
 
-@include angular-material-theme($merida-optics-theme);
+@include mat.all-component-themes($merida-optics-theme);
 
 /** BOOTSTRAP */
 @import "~bootstrap/scss/functions";
