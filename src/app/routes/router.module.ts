@@ -37,14 +37,14 @@ const ROUTES: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      { 
+    {
         path: '',
         component: BaseLayoutComponent,
         children: [
-          ...ROUTES
+            ...ROUTES
         ]
-      }
-    ])
+    }
+], { relativeLinkResolution: 'legacy' })
   ],
   exports: []
 })
