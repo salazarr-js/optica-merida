@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+// import { AngularFireAuth } from '@angular/fire/compat/auth';
+// import { auth } from 'firebase/compat/app';
 
 import { ROUTES_NAMES } from '@app/routes/routes';
 import { Store } from '@ngxs/store';
@@ -18,7 +18,7 @@ export class SignInComponent implements OnInit {
   /** */
   constructor(
     private store: Store,
-    private auth: AngularFireAuth, 
+    // private auth: AngularFireAuth,
     private router: Router
   ) {}
 
@@ -29,10 +29,10 @@ export class SignInComponent implements OnInit {
   signIn(): void {
     this.store.dispatch( new SetLoading(true) );
 
-    this.auth.signInWithPopup( new auth.GoogleAuthProvider() )
-    .then(user => {
-      this.router.navigate(['/', ROUTES_NAMES.CART]);
-    }).catch(error => console.error(error) )
-    .finally(() => this.store.dispatch( new SetLoading(false) ));
+    // this.auth.signInWithPopup( new auth.GoogleAuthProvider() )
+    // .then(user => {
+      // this.router.navigate(['/', ROUTES_NAMES.CART]);
+    // }).catch(error => console.error(error) )
+    // .finally(() => this.store.dispatch( new SetLoading(false) ));
   }
 }

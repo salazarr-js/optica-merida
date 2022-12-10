@@ -15,12 +15,12 @@ export class ProductsApiService {
   /** CREATE INSTANCE */
   constructor(private api: ApiService) {
   }
-  
+
   /** GET ALL PRODUCTS FROM API */
   public getAll(): Observable<ApiResponse> {
     return this.api.get('products');
   }
-  
+
   /** GET PRODUCT DETAIL FROM API */
   public getProduct(id: number): Observable<ApiResponse> {
     return this.api.get(`product/${id}`);

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 /** FIREBASE */
-import { AngularFireAuth } from '@angular/fire/auth';
+// import { AngularFireAuth } from '@angular/fire/compat/auth';
 /** THIRD */
 import { Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -11,7 +11,7 @@ import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Select, Store } from '@ngxs/store';
 import { SetLoading } from '@app/core/store/loading';
 import { StateReset } from 'ngxs-reset-plugin';
-import { 
+import {
   CartState, GetDetailedProducts,
   AddProduct, SubstractProduct, RemoveProduct, BuyProducts
 } from '@store/cart';
@@ -37,12 +37,13 @@ export class CartComponent implements OnInit {
   @Select(CartState.isLoading) isLoading$: Observable<boolean>;
 
   public products: Product[];
-  public user : firebase.User
+  // public user: firebase.User
+  public user = null
 
   /** */
   constructor(
     private store   : Store,
-    private auth    : AngularFireAuth,
+    // private auth    : AngularFireAuth,
     private router  : Router,
     private emailApi: EmailApiService
   ) {
@@ -56,10 +57,10 @@ export class CartComponent implements OnInit {
     this.store.select( CartState.products )
     .pipe( untilDestroyed(this) )
     .subscribe(products => this.products = products);
-    
-    this.auth.user
-    .pipe( untilDestroyed(this) )
-    .subscribe(user => this.user = user);
+
+    // this.auth.user
+    // .pipe( untilDestroyed(this) )
+    // .subscribe(user => this.user = user);
   }
 
    /** RETURN THE TOTAL FINAL PRICE */
@@ -71,12 +72,12 @@ export class CartComponent implements OnInit {
   public incProductAmount(id: number): void {
     this.store.dispatch( new AddProduct(id) );
   }
-  
+
   /** */
   public decProductAmount(id: number): void {
     this.store.dispatch( new SubstractProduct(id) );
   }
-  
+
   /** */
   public removeProduct(id: number): void {
     this.store.dispatch( new RemoveProduct(id) );
@@ -130,6 +131,6 @@ export class CartComponent implements OnInit {
         console.error("ERROR", error);
       }
     );
-    
+
   }
 }
