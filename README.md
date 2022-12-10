@@ -25,3 +25,13 @@ Ejecuta el comando `ng serve` para levantar un servidor de desarrollo. Navega a 
 ## `Build`
 
 Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado se guardara en la carpeta `dist/`. Usa la bandera `--prod` para compilar con parametros para producción.
+
+> https://www.masvision.com.ar/
+
+# TODOs
+- [x] update angular & angular material 
+- [x] Setup msw
+  - [ ] mock product page
+  - [ ] mock cart page
+- [ ] fix broken images 
+- [ ] fix auth
