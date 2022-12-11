@@ -39,14 +39,41 @@ const producHandlers = [
 }),
 
   /** getProducts */
-  rest.post('*/products/detail', (req, res, ctx) => res(
-    ctx.json({ data: [] })
-  )),
+  rest.post('*/products/detail', async (req, res, ctx) => {
+    try {
+      const productIds = (await req.json()).products as number[]
+      const products = (await useMockProducts()).filter(p => productIds.includes(p.id))
+
+      return res(
+        ctx.delay(),
+        ctx.json({ data: { products } })
+      )
+    } catch (_) {
+      return res(ctx.delay(), ctx.status(404))
+    }
+  }),
 
   /** buyProducts */
-  rest.post('products/buy', (req, res, ctx) => res(
-    ctx.json({ data: [] })
-  )),
+  rest.post('*/products/buy', async (req, res, ctx) => {
+    try {
+      const cartProducts = (await req.json()).products as Product[]
+      const products = await useMockProducts()
+
+      cartProducts.forEach(cartProduct => {
+        const index = products.findIndex(p => p.id === cartProduct.id)
+
+        if (index >= 0)
+          products[index].stock -= cartProduct.amount
+      })
+
+      return res(
+        ctx.delay(),
+        ctx.json({ data: null })
+      )
+    } catch (_) {
+      return res(ctx.delay(), ctx.status(404))
+    }
+  }),
 ]
 
 

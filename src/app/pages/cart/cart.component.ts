@@ -38,7 +38,7 @@ export class CartComponent implements OnInit {
 
   public products: Product[];
   // public user: firebase.User
-  public user = null
+  public user = {}
 
   /** */
   constructor(
@@ -116,10 +116,10 @@ export class CartComponent implements OnInit {
   /** */
   sendEmail(): void {
     const mail = {
-      to: this.user.email,
-      name: this.user.displayName,
-      products: this.products,
-      total: this.store.selectSnapshot( CartState.totalPrice )
+      // to: this.user.email,
+      // name: this.user.displayName,
+      // products: this.products,
+      // total: this.store.selectSnapshot( CartState.totalPrice )
     };
 
     this.emailApi.sendInvoiceEmail( mail )

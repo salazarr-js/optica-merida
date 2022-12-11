@@ -31,7 +31,12 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
 # TODOs
 - [x] update angular & angular material 
 - [x] Setup msw
-  - [ ] mock product page
-  - [ ] mock cart page
+  - [x] mock home page services
+  - [x] mock product detail page services
+  - [x] mock cart page services
 - [ ] fix broken images 
 - [ ] fix auth
+- [ ] fix email send
+- [ ] fix stock artifact
+- [ ] update third libs
+- [ ] fix 
