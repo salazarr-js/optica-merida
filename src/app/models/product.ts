@@ -49,6 +49,7 @@ export interface Product {
   subtype?: ProductSubTypes;
   color?: string;
   images?: string[];
+  url?: string
 
   amount?: number;
 }

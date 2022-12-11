@@ -48,6 +48,8 @@
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "axios": "^1.2.1",
+    "cheerio": "^1.0.0-rc.12",
     "codelyzer": "^6.0.0",
     "firebase-tools": "^11.17.0",
     "jasmine-core": "~3.6.0",
