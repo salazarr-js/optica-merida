@@ -8,6 +8,7 @@ import { CartState } from '@store/cart';
 import { LoadingState, SetLoading } from '@store/loading';
 /** CONSTs & MODELS */
 import { ROUTES_NAMES } from '@routes/routes';
+import { ProductsState } from '@app/core/store/products';
 
 
 /** NAV BAR COMPONENT */
@@ -21,6 +22,8 @@ export class NavBarComponent implements OnInit {
   @Select(LoadingState.isLoading) isLoading$: Observable<boolean>;
   /** TOTAL OF PRODUCTS ON CART */
   @Select(CartState.totalProducts) products$: Observable<number>;
+  /** */
+  @Select(ProductsState.isSearchable) isSearchable$: Observable<boolean>;
   /** */
   // public user$: Observable<firebase.User>
   public user$: Observable<any>

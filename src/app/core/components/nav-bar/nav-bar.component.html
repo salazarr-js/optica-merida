@@ -8,6 +8,8 @@
 
   <span class="navbar-spacer"></span>
 
+  <search-bar *ngIf="isSearchable$ | async"></search-bar>
+
   <!-- USER ACTION -->
   <div *ngIf="user$ | async as user" >
     <div class="navbar-user" [matMenuTriggerFor]="menu" matRipple >
@@ -25,12 +27,12 @@
     mat-icon-button
     class="navbar-cart"
     matTooltip="Carrito de compras"
-    [routerLink]="urls.cart" 
+    [routerLink]="urls.cart"
   >
     <mat-icon
       fontSet="material-icons-outlined"
-      [matBadge]="products$ | async" 
-      [matBadgeHidden]="!(products$ | async)" 
+      [matBadge]="products$ | async"
+      [matBadgeHidden]="!(products$ | async)"
     >shopping_cart</mat-icon>
   </button>
 </nav>

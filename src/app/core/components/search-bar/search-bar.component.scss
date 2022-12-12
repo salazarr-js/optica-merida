@@ -1,0 +1,39 @@
+@import "variables";
+
+:host {
+  flex: 1 1 auto;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  max-width: 320px;
+  box-shadow: 0 0 0 2px $lighter;
+  border-radius: 64px;
+  background-color: $lighter;
+
+  .searchbar-input {
+    flex: 1;
+    margin: 0;
+    padding: 8px 16px;
+    min-width: 32px;
+    padding-right: 0;
+
+    color: $dark;
+    border: none;
+    display: block;
+    font-size: 14px;
+    transition: all .15s ease-in-out;
+    border-radius: 64px 2px 2px 64px;
+    background-color: white;
+
+    &::placeholder {
+      color: rgba($darkest, .4);
+    }
+
+    &:hover, &:focus {
+    }
+  }
+
+  .searchbar-icon {
+    color: $gray;
+  }
+}

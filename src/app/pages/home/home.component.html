@@ -1,5 +1,5 @@
-<div 
-  class="header" 
+<div
+  class="header"
   [bg-image]="bgImg"
 ></div>
 
@@ -11,7 +11,7 @@
 
         <div class="filters--section">
           <h3>Tipo de lente</h3>
-          <button 
+          <button
             mat-button color="primary" large block text-left
             [ngClass]="{ active: typeFilter == productTypes.frame }"
             (click)="setTypeFilter(productTypes.frame)"
@@ -39,11 +39,16 @@
 
     <div class="col-9">
       <div class="row">
-        <div class="col col-4" *ngFor="let product of (products$ | async); let i = index">
-    
-          <product-card [product]="product"></product-card>
-    
-        </div>
+        <ng-container *ngIf="products?.length; else emptyProducts">
+          <div class="col col-4" *ngFor="let product of products; let i = index">
+            <product-card [product]="product"></product-card>
+          </div>
+        </ng-container>
+
+        <ng-template #emptyProducts>
+          <h2>Tu busqueda no arrojo ningun resultado</h2>
+          <button (click)="clearFilters()">reiniciar filtros</button>
+        </ng-template>
       </div>
 
     </div>

@@ -8,6 +8,10 @@ export interface ProductsStateModel {
   products: Product[];
   /** PRODUCTS TYPE FILTER */
   typeFilter: ProductTypes;
+  /** */
+  searchText: string
+  /** Activate/Disable `searchbar` */
+  searchable: boolean
 
   /** IS FILLED STATE */
   filled: boolean;

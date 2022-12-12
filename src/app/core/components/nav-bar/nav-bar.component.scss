@@ -8,13 +8,14 @@
   z-index: 999;
   display: block;
   position: fixed;
-  
+
   box-shadow: 0 3px 5px -1px rgba(black, .2),
               0 6px 10px 0 rgba(black, .14),
               0 1px 18px 0 rgba(black, .12);
   background-color: #0096d1;
 
   .navbar {
+    gap: 8px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -31,7 +32,7 @@
       }
     }
     .navbar-brand--logo {
-      height: 48px; 
+      height: 48px;
       display: inline-block;
       margin-right: 8px;
       transform: scale3d(1, 1, 1);
@@ -46,6 +47,9 @@
       transition: all .15s ease-in-out;
       line-height: 1;
       font-weight: $font-normal;
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
   }
 

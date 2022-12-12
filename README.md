@@ -34,9 +34,18 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - [x] mock home page services
   - [x] mock product detail page services
   - [x] mock cart page services
-- [ ] fix broken images 
+- [x] fix broken images 
+- [ ] better empty views
 - [ ] fix auth
 - [ ] fix email send
 - [ ] fix stock artifact
 - [ ] update third libs
-- [ ] fix 
+- [x] add searchbar + searching feature
+  - [ ] hide searchbar on unused routes
+  - [ ] animate searchbar
+- [ ] responsive fixes
+  - [ ] fix hero
+  - [ ] fix home page
+  - [ ] fix product detail page
+  - [ ] fix cart page
+- [ ] paginador/mostrar mas

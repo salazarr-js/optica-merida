@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 // MODELS
 import { Select, Store } from '@ngxs/store';
-import { GetAllProducts, ProductsState, RemoveTypeFilter, SetTypeFilter } from '@store/products';
+import { GetAllProducts, ProductsState, RemoveSearchText, RemoveTypeFilter, SetSearchable, SetTypeFilter } from '@store/products';
 import { Product, ProductTypes } from '@models/product';
 
 /** HOME PAGE COMPONENT */
@@ -13,7 +13,7 @@ import { Product, ProductTypes } from '@models/product';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   /** */
   public bgImg: string
   /** */
@@ -21,8 +21,9 @@ export class HomeComponent implements OnInit {
   /** */
   public typeFilter: ProductTypes;
   /** */
-  @Select(ProductsState.filteredProducts) products$: Product[] ;
-
+  // @Select(ProductsState.filteredProducts) products$: Product[] ;
+  /** */
+  public products: Product[] ;
 
   /** */
   constructor(
@@ -33,11 +34,17 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getBgImg();
 
-    this.store.dispatch( new GetAllProducts() );
+    this.store.dispatch([ new GetAllProducts(), new SetSearchable(true)]);
+
+    this.store.select( ProductsState.filteredProducts )
+      .pipe( untilDestroyed(this) )
+      .subscribe(typeFilter => this.products = typeFilter);
 
     this.store.select( ProductsState.typeFilter )
       .pipe( untilDestroyed(this) )
       .subscribe(typeFilter => this.typeFilter = typeFilter);
+
+    this.clearFilters()
   }
 
   /** */
@@ -56,10 +63,19 @@ export class HomeComponent implements OnInit {
 
   /** */
   public setTypeFilter(filter: ProductTypes): void {
-    if ( this.typeFilter === filter) {
+    if ( this.typeFilter === filter)
       this.store.dispatch( new RemoveTypeFilter() );
-    } else {
+    else
       this.store.dispatch( new SetTypeFilter(filter) );
-    }
+  }
+
+  /** */
+  public clearFilters(): void {
+    this.store.dispatch([new RemoveSearchText(), new RemoveTypeFilter()]);
+  }
+
+  /** */
+  ngOnDestroy(): void {
+    this.store.dispatch([new RemoveSearchText(), new RemoveTypeFilter(), new SetSearchable(false)]);
   }
 }

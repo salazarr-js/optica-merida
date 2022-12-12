@@ -1,0 +1,17 @@
+<input
+  class="searchbar-input"
+  type="text"
+  placeholder="Buscar"
+  autocomplete
+  [(ngModel)]="searchText"
+  (keyup)="search()"
+>
+
+<button
+  (click)="clear()"
+  class="searchbar-icon"
+  mat-icon-button
+  matTooltip="Buscar"
+>
+  <mat-icon fontSet="material-icons-outlined">{{ searchText?.trim()?.length ? 'close' : 'search' }}</mat-icon>
+</button>
