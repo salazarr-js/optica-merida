@@ -42,7 +42,6 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
 - [ ] update third libs
 - [x] add searchbar + searching feature
   - [x] hide searchbar on unused routes
-  - [ ] animate searchbar
 - [ ] responsive fixes
   - [x] fix hero
   - [x] fix home page
@@ -51,5 +50,9 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - [ ] fix product detail page
   - [ ] fix cart page
   - [ ] fix sign-in page
+- [x] add scroll to top button
 - [ ] paginador/mostrar mas
+- [ ] animations
+  - [ ] animate searchbar
+  - [ ] animate scroll to top
 - [ ] update README
