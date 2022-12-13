@@ -75,6 +75,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   /** */
+  trackByItems(_: number, product: Product): string {
+    return `${product.id} ${product.cod}`;
+  }
+
+  /** */
   ngOnDestroy(): void {
     this.store.dispatch([new RemoveSearchText(), new RemoveTypeFilter(), new SetSearchable(false)]);
   }

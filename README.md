@@ -41,11 +41,15 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
 - [ ] fix stock artifact
 - [ ] update third libs
 - [x] add searchbar + searching feature
-  - [ ] hide searchbar on unused routes
+  - [x] hide searchbar on unused routes
   - [ ] animate searchbar
 - [ ] responsive fixes
-  - [ ] fix hero
-  - [ ] fix home page
+  - [x] fix hero
+  - [x] fix home page
+    - [x] responsive product card
+    - [x] responsive filters
   - [ ] fix product detail page
   - [ ] fix cart page
+  - [ ] fix sign-in page
 - [ ] paginador/mostrar mas
+- [ ] update README

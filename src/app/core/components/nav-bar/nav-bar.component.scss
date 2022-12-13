@@ -47,7 +47,7 @@
       transition: all .15s ease-in-out;
       line-height: 1;
       font-weight: $font-normal;
-      @media (max-width: 768px) {
+      @media (max-width: 767px) {
         display: none;
       }
     }

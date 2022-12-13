@@ -6,35 +6,85 @@
 
   .header {
     height: 320px;
+    height: clamp(320px, 30vw, 432px);
     margin: -32px 0 32px;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
+
+    img {
+      width: 100vw;
+      height: 100%;
+      object-fit: cover;
+      object-position: top right;
+    }
   }
-  
+
   .filters {
     top: 96px;
     position: sticky;
+
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+
     .filters--title {
       color: $dark;
       margin: 0;
       font-size: 24px;
       line-height: 1;
       font-weight: $font-normal;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
+    .filters--subtitle {
+      color: $gray;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: $font-light;
+      margin-bottom: 2px;
+    }
+
     .filters--section {
-      margin-bottom: 16px;
-      h3 {
-        color: $gray;
-        margin: 0;
-        font-size: 18px;
-        line-height: 1;
-        font-weight: $font-light;
-        margin-bottom: 16px;
-      }
-      button {
-        margin-bottom: 8px;
-        &:last-child { margin-bottom: 4px; }
+      gap: 4px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .filters {
+      top: 0;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 1px 1px 0 rgba($darkest, .1), 0 -1px 2px 0 rgba($darkest, .1);
+      margin-bottom: 24px;
+      border-radius: 8px;
+      background-color: white;
+
+      .filters--title, .filters--subtitle { display: none };
+
+      .filters--section {
+        height: 48px;
+        display: flex;
+        overflow-x: auto;
+        flex-direction: row;
+        scroll-snap-type: x mandatory;
+
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        button {
+          flex: 1 0 auto;
+          width: auto;
+          border-radius: 0;
+          scroll-snap-align: center;
+          ::ng-deep {
+            .mat-button-wrapper {
+              justify-content: center;
+            }
+          }
+        }
       }
     }
   }

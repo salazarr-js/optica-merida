@@ -1,46 +1,48 @@
-<div
-  class="header"
-  [bg-image]="bgImg"
-></div>
+<div class="header">
+  <img [src]="bgImg">
+</div>
 
 <div class="container">
   <div class="row">
-    <aside class="col-3">
+
+    <aside class="col-12 col-md-4 col-lg-3 col-xl-2">
       <div class="filters">
         <h2 class="filters--title">Filtros</h2>
 
+        <h3 class="filters--subtitle">Tipo de lente</h3>
         <div class="filters--section">
-          <h3>Tipo de lente</h3>
           <button
-            mat-button color="primary" large block text-left
+            mat-button color="primary" small block text-left
             [ngClass]="{ active: typeFilter == productTypes.frame }"
             (click)="setTypeFilter(productTypes.frame)"
           >
             Armazones de receta
           </button>
           <button
-            mat-button color="primary" large block text-left
+            mat-button color="primary" small block text-left
             [ngClass]="{ active: typeFilter == productTypes.sun }"
             (click)="setTypeFilter(productTypes.sun)"
           >
             Lentes de Sol
           </button>
           <button
-            mat-button color="primary" large block text-left
+            mat-button color="primary" small block text-left
             [ngClass]="{ active: typeFilter == productTypes.contact }"
             (click)="setTypeFilter(productTypes.contact)"
           >
             Lentes de Contacto
           </button>
         </div>
-
       </div>
     </aside>
 
-    <div class="col-9">
+    <div class="col-12 col-md-8 col-lg-9 col-xl-10">
       <div class="row">
         <ng-container *ngIf="products?.length; else emptyProducts">
-          <div class="col col-4" *ngFor="let product of products; let i = index">
+          <div
+            class="col-xs-12 col-sm-6 col-lg-4 col-xl-3 mb-4"
+            *ngFor="let product of products; trackBy: trackByFn"
+          >
             <product-card [product]="product"></product-card>
           </div>
         </ng-container>
