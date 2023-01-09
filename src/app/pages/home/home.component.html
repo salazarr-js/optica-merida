@@ -11,27 +11,14 @@
 
         <h3 class="filters--subtitle">Tipo de lente</h3>
         <div class="filters--section">
-          <button
-            mat-button color="primary" small block text-left
-            [ngClass]="{ active: typeFilter == productTypes.frame }"
-            (click)="setTypeFilter(productTypes.frame)"
-          >
-            Armazones de receta
-          </button>
-          <button
-            mat-button color="primary" small block text-left
-            [ngClass]="{ active: typeFilter == productTypes.sun }"
-            (click)="setTypeFilter(productTypes.sun)"
-          >
-            Lentes de Sol
-          </button>
-          <button
-            mat-button color="primary" small block text-left
-            [ngClass]="{ active: typeFilter == productTypes.contact }"
-            (click)="setTypeFilter(productTypes.contact)"
-          >
-            Lentes de Contacto
-          </button>
+          <ng-container *ngFor="let filterBtn of filtersButtons">
+            <button
+              mat-button small block text-left
+              color="primary"
+              [ngClass]="{ active: typeFilter == filterBtn.value }"
+              (click)="setTypeFilter(filterBtn.value)"
+            >{{ filterBtn.text }}</button>
+          </ng-container>
         </div>
       </div>
     </aside>
@@ -46,6 +33,12 @@
               <product-card [product]="product"></product-card>
             </div>
           </div>
+
+          <p class="load-more-btn" *ngIf="canLoadMore$ | async">
+            <button mat-flat-button color="primary" (click)="loadMore()">
+              Cargar mas productos
+            </button>
+          </p>
         </ng-container>
 
         <ng-template #emptyProducts>

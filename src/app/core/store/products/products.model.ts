@@ -4,8 +4,10 @@ import { Product, ProductTypes } from '@models/product';
 
 /** PLANS STATE MODEL */
 export interface ProductsStateModel {
-  /** PRODUCTS */
-  products: Product[];
+  /** */
+  loadedProducts: Product[];
+  /** */
+  allProducts: Product[];
   /** PRODUCTS TYPE FILTER */
   typeFilter: ProductTypes;
   /** */

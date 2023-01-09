@@ -8,7 +8,7 @@ export class GetAllProducts {
 /** SET/SAVE PRODUCTS WITH DETAILS TO STATE */
 export class SetProducts {
   public static readonly type = '[Products] Set';
-  constructor(public products: Product[]) {}
+  constructor(public allProducts: Product[]) {}
 }
 
 /** SET/SAVE TYPE FILTER TO STATE */
@@ -37,4 +37,9 @@ export class RemoveSearchText {
 export class SetSearchable {
   public static readonly type = '[Products] Set Searchable';
   constructor(public searchable: boolean) {}
+}
+
+/** */
+export class LoadMoreProducts {
+  public static readonly type = '[Products] Load More';
 }

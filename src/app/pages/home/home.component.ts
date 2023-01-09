@@ -3,8 +3,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 // MODELS
 import { Select, Store } from '@ngxs/store';
-import { GetAllProducts, ProductsState, RemoveSearchText, RemoveTypeFilter, SetSearchable, SetTypeFilter } from '@store/products';
+import {
+  GetAllProducts, ProductsState, RemoveSearchText,
+  RemoveTypeFilter, SetSearchable, SetTypeFilter,
+  LoadMoreProducts
+} from '@store/products';
 import { Product, ProductTypes } from '@models/product';
+import { Observable } from 'rxjs';
 
 /** HOME PAGE COMPONENT */
 @UntilDestroy()
@@ -17,18 +22,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   /** */
   public bgImg: string
   /** */
-  public productTypes = ProductTypes;
-  /** */
   public typeFilter: ProductTypes;
   /** */
   // @Select(ProductsState.filteredProducts) products$: Product[] ;
   /** */
+  @Select(ProductsState.canLoadMore) canLoadMore$: Observable<boolean>;
+  /** */
   public products: Product[] ;
+
+  public filtersButtons: any[]
 
   /** */
   constructor(
     private store: Store
-  ) { }
+  ) {
+    this.filtersButtons = [
+      { text: 'Armazones de receta', value: ProductTypes.frame },
+      { text: 'Lentes de Sol', value: ProductTypes.sun },
+      { text: 'Lentes de Contacto', value: ProductTypes.contact },
+    ]
+  }
 
   /** */
   ngOnInit(): void {
@@ -38,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.store.select( ProductsState.filteredProducts )
       .pipe( untilDestroyed(this) )
-      .subscribe(typeFilter => this.products = typeFilter);
+      .subscribe(products => this.products = products);
 
     this.store.select( ProductsState.typeFilter )
       .pipe( untilDestroyed(this) )
@@ -82,5 +95,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   /** */
   ngOnDestroy(): void {
     this.store.dispatch([new RemoveSearchText(), new RemoveTypeFilter(), new SetSearchable(false)]);
+  }
+
+  /** */
+  public loadMore() {
+    this.store.dispatch(new LoadMoreProducts())
   }
 }

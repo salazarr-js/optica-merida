@@ -1,4 +1,4 @@
-
+@use 'vendor' as mat;
 @import './vendor/';   // MATERIAL, BOOTSTRAP, THIRD PARTY STYLES IMPORTS ...
 @import './variables'; // ALL APP REUSABLE VARIABLES, COLORS, SIZES, FONTS
 @import './base/';     // BASE STILES, BASICS OVERWRITES ...
@@ -19,7 +19,7 @@
   }
   &.active {
     color: $white;
-    background-color: $primary;
+    background-color: mat.getPrimaryColor();
   }
   .mat-button-wrapper {
     height: 100%;

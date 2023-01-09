@@ -15,14 +15,18 @@ import { ProductsApiService } from '@services/products-api/products-api.service'
 import {
   GetAllProducts, SetProducts,
   SetTypeFilter, RemoveTypeFilter,
-  SetSearchText, RemoveSearchText, SetSearchable
+  SetSearchText, RemoveSearchText, SetSearchable, LoadMoreProducts
 } from './products.actions';
+
+/** */
+const PRODUCTS_AMOUNT = 24
 
 
 /** RETURN `State` DEFAULT INITIAL VALUE */
 export function ProductsDefaultValue(): ProductsStateModel {
   return {
-    products: [],
+    loadedProducts: [],
+    allProducts: [],
     typeFilter: null,
     searchText: null,
     searchable: false,
@@ -47,16 +51,21 @@ export class ProductsState {
   /** RETURN FILTERED PRODUCTS */
   @Selector<Product[]>()
   static filteredProducts(state: ProductsStateModel) {
-    return state.products
-      .filter(p => {
-        const byTypeFilter = p.type === (state.typeFilter ?? '')
-        const bySearchText = p.description.toLowerCase().includes(state.searchText)
+    const anyFilter = state.typeFilter !== null || state.searchText !== null
 
-        return (
-          (state.typeFilter ? byTypeFilter : true)
-          && (state.searchText ? bySearchText : true)
-        )
-      })
+    if (anyFilter)
+      return state.allProducts
+        .filter(p => {
+          const byTypeFilter = p.type === (state.typeFilter ?? '')
+          const bySearchText = p.description.toLowerCase().includes(state.searchText)
+
+          return (
+            (state.typeFilter ? byTypeFilter : true)
+            && (state.searchText ? bySearchText : true)
+          )
+        })
+
+    return state.loadedProducts
   }
 
   /** RETURN SELECTED TYPE FILTER */
@@ -65,11 +74,12 @@ export class ProductsState {
     return state.typeFilter;
   }
 
-   /** RETURN SEARCHABLE */
-   @Selector<ProductTypes>()
-   static isSearchable(state: ProductsStateModel) {
-     return state.searchable;
-   }
+
+  /** RETURN SEARCHABLE */
+  @Selector<ProductTypes>()
+  static isSearchable(state: ProductsStateModel) {
+    return state.searchable;
+  }
 
   /** GET/REQUEST ALL PLANS FROM API */
   @Action(GetAllProducts, { cancelUncompleted: true })
@@ -90,8 +100,12 @@ export class ProductsState {
 
   /** SET/SAVE PRODUCTS WITH DETAILS TO STATE */
   @Action(SetProducts,)
-  public setProducts(ctx: StateContext<ProductsStateModel>, { products }: SetProducts) {
-    ctx.patchState({ ...ctx.getState(), products });
+  public setProducts(ctx: StateContext<ProductsStateModel>, { allProducts }: SetProducts) {
+    ctx.patchState({
+      ...ctx.getState(),
+      allProducts,
+      loadedProducts: allProducts.slice(0, PRODUCTS_AMOUNT)
+    });
   }
 
   /** SET/SAVE TYPE FILTER TO STATE */
@@ -122,8 +136,41 @@ export class ProductsState {
 
 
   /** SET/SAVE SEARCHABLE TO STATE */
-  @Action(SetSearchable,)
+  @Action(SetSearchable)
   public setSearchable(ctx: StateContext<ProductsStateModel>, { searchable }: SetSearchable) {
     ctx.patchState({ ...ctx.getState(), searchable });
+  }
+
+  /** */
+  @Action(LoadMoreProducts)
+  public loadMoreProducts(ctx: StateContext<ProductsStateModel>) {
+    ctx.dispatch( new SetLoading(true) );
+
+    const state = ctx.getState()
+    const loadedProducts = state.loadedProducts || []
+    const allProducts = state.allProducts
+
+    const start = loadedProducts.length
+    const end = start + PRODUCTS_AMOUNT
+
+    setTimeout(() => {
+      ctx.dispatch( new SetLoading(false) )
+
+      ctx.patchState({
+        ...ctx.getState(),
+        loadedProducts: [...loadedProducts, ...allProducts.slice(start, end)]
+      })
+    }, 1000);
+  }
+
+  /** */
+  @Selector<boolean>()
+  static canLoadMore(state: ProductsStateModel) {
+    const anyFilter = state.typeFilter !== null || state.searchText !== null
+
+    return (
+      state.loadedProducts.length < state.allProducts.length &&
+      !anyFilter
+    )
   }
 }
