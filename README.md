@@ -36,6 +36,9 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - [x] mock cart page services
 - [x] fix broken images 
 - [ ] better empty views
+  - [x] empty search
+  - [ ] 404
+  - [ ] empty cart
 - [ ] fix auth
 - [ ] fix email send
 - [ ] fix stock artifact
@@ -54,5 +57,5 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
 - [ ] paginador/mostrar mas
 - [ ] animations
   - [ ] animate searchbar
-  - [ ] animate scroll to top
+  - [x] animate scroll to top
 - [ ] update README

@@ -1,7 +1,9 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Store } from '@ngxs/store'
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store, Actions, ofActionDispatched } from '@ngxs/store'
 import { RemoveSearchText, SetSearchText } from '@store/products';
 
+@UntilDestroy()
 @Component({
   selector: 'search-bar',
   templateUrl: './search-bar.component.html',
@@ -11,11 +13,16 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   /** */
   @Input() searchText: string
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private actions: Actions) {
   }
 
   ngOnInit(): void {
     this.clear()
+
+    this.actions.pipe(
+      ofActionDispatched(RemoveSearchText),
+      untilDestroyed(this)
+    ).subscribe(_ => this.searchText = '')
   }
 
   ngOnDestroy(): void {
@@ -32,7 +39,6 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   clear():void {
-    this.searchText = ''
     this.store.dispatch( new RemoveSearchText() );
   }
 }

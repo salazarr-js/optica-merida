@@ -37,24 +37,31 @@
     </aside>
 
     <div class="col-12 col-md-8 col-lg-9 col-xl-10">
-      <div class="row">
-        <ng-container *ngIf="products?.length; else emptyProducts">
-          <div
-            class="col-xs-12 col-sm-6 col-lg-4 col-xl-3 mb-4"
-            *ngFor="let product of products; trackBy: trackByFn"
-          >
-            <product-card [product]="product"></product-card>
+      <ng-container *ngIf="products?.length; else emptyProducts">
+          <div class="row">
+            <div
+              class="col-xs-12 col-sm-6 col-lg-4 col-xl-3 mb-4"
+              *ngFor="let product of products; trackBy: trackByFn"
+            >
+              <product-card [product]="product"></product-card>
+            </div>
           </div>
         </ng-container>
 
         <ng-template #emptyProducts>
-          <h2>Tu busqueda no arrojo ningun resultado</h2>
-          <button (click)="clearFilters()">reiniciar filtros</button>
+          <div class="empty-view">
+            <img src="assets/images/empty-search.svg">
+
+            <h2>No se encontro ningun resultado.</h2>
+
+            <p class="text-center m-0">
+              <button mat-stroked-button color="primary" (click)="clearFilters()">
+                Reiniciar filtros
+              </button>
+            </p>
+          </div>
         </ng-template>
       </div>
-
-    </div>
-
   </div>
 
 </div>
