@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 
 import { Store } from '@ngxs/store';
 import { Product } from '@models/product';
-import { AddProduct } from '@core/store/cart';
+import { AddProduct, CartState } from '@core/store/cart';
 import { ROUTES_NAMES } from '@routes/routes';
 
 import { applyDiscount } from '@helpers/index';
@@ -18,12 +18,22 @@ import { applyDiscount } from '@helpers/index';
 export class ProductCardComponent implements OnInit {
   /** */
   @Input() product: Product;
+  /** */
+  public timesAdded: number
 
   /** */
-  constructor(private store: Store) { }
-  
+  constructor(private store: Store) {
+    this.timesAdded = 0
+  }
+
   /** */
   ngOnInit(): void {
+    this.store.selectOnce(CartState.products)
+    .subscribe(cartProducts => {
+      const isInCart = cartProducts.find(p => p.id === this.product.id)
+      if (isInCart)
+        this.timesAdded = isInCart.amount
+    })
   }
 
   /** RETURN THE DETAIL ROUTE URL */
@@ -53,6 +63,7 @@ export class ProductCardComponent implements OnInit {
     ev.preventDefault();
     ev.stopPropagation();
 
-    this.store.dispatch( new AddProduct(this.product.id || 1) );
+    this.timesAdded++
+    this.store.dispatch( new AddProduct(this.product.id) );
   }
 }

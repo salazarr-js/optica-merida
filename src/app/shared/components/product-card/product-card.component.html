@@ -11,10 +11,10 @@
   <div class="product-card--details">
     <p class="price--container" [routerLink]="detailUrl">
       <product-price
-        class="price" 
-        [value]="product.price" 
+        class="price"
+        [value]="product.price"
         [lined]="true"
-        *ngIf="product.discount > 0" 
+        *ngIf="product.discount > 0"
         ></product-price>
     </p>
 
@@ -23,15 +23,15 @@
 
       <span class="discount" *ngIf="product.discount > 0">{{ product.discount }}% Descuento</span>
     </p>
-    
+
     <h2 class="description" [routerLink]="detailUrl">{{ product.description }}</h2>
-  
+
     <button
-      mat-flat-button 
-      color="primary" 
-      class="add-cart-button" 
+      mat-flat-button
+      color="primary"
+      class="add-cart-button"
       (click)="addToCart($event)"
-      [disabled]="!product.stock"
+      [disabled]="timesAdded >= product.stock"
     >
       <mat-icon fontSet="material-icons-outlined">add_shopping_cart</mat-icon>
       Agregar al carrito

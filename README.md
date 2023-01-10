@@ -41,7 +41,7 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - [ ] empty cart
 - [ ] fix auth
 - [ ] fix email send
-- [ ] fix stock artifact
+- [x] fix stock artifact
 - [ ] update third libs
 - [x] add searchbar + searching feature
   - [x] hide searchbar on unused routes
@@ -58,4 +58,16 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
 - [ ] animations
   - [ ] animate searchbar
   - [x] animate scroll to top
+- [ ] alert info 
+  this is just a learning/testing propuse e-commerce app,
+  - we won't ask or save any personal data
+  - the auth sesion will be remove from our servers automatically after some time
+  - all the products info and image were scraped from https://www.masvision.com.ar/
+    Copyright © 2023 Mas Vision Argentina
+  - product prices and stock are simulated
+  - you will receive a confirmation mail after finish a simulated "buy", you wont receive any other mail after that ( no spam )
+  - any payment method will be asked, the buy proces is just a simulation
+  - any sesion data will be saved on server, we use only localstore to simulate the database
+- [ ] indrement/decrement stock after succesful sale
+
 - [ ] update README

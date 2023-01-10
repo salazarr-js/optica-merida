@@ -5,7 +5,7 @@ import { Product, ProductTypes } from '@models/product';
 /** PLANS STATE MODEL */
 export interface ProductsStateModel {
   /** */
-  loadedProducts: Product[];
+  loadedProducts: number;
   /** */
   allProducts: Product[];
   /** PRODUCTS TYPE FILTER */

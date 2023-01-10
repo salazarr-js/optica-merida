@@ -5,7 +5,7 @@ import { Product } from '@models/product';
 /** PLANS STATE MODEL */
 export interface CartStateModel {
   /** PRODUCTS IN CART WITH DETAILS */
-  products: Product[];
+  cartProducts: Product[];
 
   /** IS FILLED STATE */
   filled: boolean;

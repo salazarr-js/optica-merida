@@ -25,36 +25,36 @@
 
     <div class="col-12 col-md-8 col-lg-9 col-xl-10">
       <ng-container *ngIf="products?.length; else emptyProducts">
-          <div class="row">
-            <div
-              class="col-xs-12 col-sm-6 col-lg-4 col-xl-3 mb-4"
-              *ngFor="let product of products; trackBy: trackByFn"
-            >
-              <product-card [product]="product"></product-card>
-            </div>
+        <div class="row">
+          <div
+            class="col-xs-12 col-sm-6 col-lg-4 col-xl-3 mb-4"
+            *ngFor="let product of products; trackBy: trackByFn"
+          >
+            <product-card [product]="product"></product-card>
           </div>
+        </div>
 
-          <p class="load-more-btn" *ngIf="canLoadMore$ | async">
-            <button mat-flat-button color="primary" (click)="loadMore()">
-              Cargar mas productos
+        <p class="load-more-btn" *ngIf="canLoadMore$ | async">
+          <button mat-flat-button color="primary" (click)="loadMore()">
+            Cargar mas productos
+          </button>
+        </p>
+      </ng-container>
+
+      <ng-template #emptyProducts>
+        <div class="empty-view">
+          <img src="assets/images/empty-search.svg">
+
+          <h2>No se encontro ningun resultado.</h2>
+
+          <p class="text-center m-0">
+            <button mat-stroked-button color="primary" (click)="clearFilters()">
+              Reiniciar filtros
             </button>
           </p>
-        </ng-container>
-
-        <ng-template #emptyProducts>
-          <div class="empty-view">
-            <img src="assets/images/empty-search.svg">
-
-            <h2>No se encontro ningun resultado.</h2>
-
-            <p class="text-center m-0">
-              <button mat-stroked-button color="primary" (click)="clearFilters()">
-                Reiniciar filtros
-              </button>
-            </p>
-          </div>
-        </ng-template>
-      </div>
+        </div>
+      </ng-template>
+    </div>
   </div>
 
 </div>

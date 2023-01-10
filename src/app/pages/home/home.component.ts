@@ -33,9 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public filtersButtons: any[]
 
   /** */
-  constructor(
-    private store: Store
-  ) {
+  constructor(private store: Store) {
     this.filtersButtons = [
       { text: 'Armazones de receta', value: ProductTypes.frame },
       { text: 'Lentes de Sol', value: ProductTypes.sun },
@@ -51,7 +49,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.store.select( ProductsState.filteredProducts )
       .pipe( untilDestroyed(this) )
-      .subscribe(products => this.products = products);
+      .subscribe(products => {
+        this.products = products
+      });
 
     this.store.select( ProductsState.typeFilter )
       .pipe( untilDestroyed(this) )

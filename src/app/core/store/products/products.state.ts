@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import produce from 'immer';
 import { tap } from 'rxjs/operators';
 // STORE
 import {
@@ -15,7 +16,8 @@ import { ProductsApiService } from '@services/products-api/products-api.service'
 import {
   GetAllProducts, SetProducts,
   SetTypeFilter, RemoveTypeFilter,
-  SetSearchText, RemoveSearchText, SetSearchable, LoadMoreProducts
+  SetSearchText, RemoveSearchText, SetSearchable,
+  LoadMoreProducts
 } from './products.actions';
 
 /** */
@@ -25,7 +27,7 @@ const PRODUCTS_AMOUNT = 24
 /** RETURN `State` DEFAULT INITIAL VALUE */
 export function ProductsDefaultValue(): ProductsStateModel {
   return {
-    loadedProducts: [],
+    loadedProducts: PRODUCTS_AMOUNT,
     allProducts: [],
     typeFilter: null,
     searchText: null,
@@ -65,7 +67,7 @@ export class ProductsState {
           )
         })
 
-    return state.loadedProducts
+    return state.allProducts.slice(0, state.loadedProducts)
   }
 
   /** RETURN SELECTED TYPE FILTER */
@@ -104,7 +106,7 @@ export class ProductsState {
     ctx.patchState({
       ...ctx.getState(),
       allProducts,
-      loadedProducts: allProducts.slice(0, PRODUCTS_AMOUNT)
+      loadedProducts: PRODUCTS_AMOUNT
     });
   }
 
@@ -145,20 +147,14 @@ export class ProductsState {
   @Action(LoadMoreProducts)
   public loadMoreProducts(ctx: StateContext<ProductsStateModel>) {
     ctx.dispatch( new SetLoading(true) );
-
     const state = ctx.getState()
-    const loadedProducts = state.loadedProducts || []
-    const allProducts = state.allProducts
-
-    const start = loadedProducts.length
-    const end = start + PRODUCTS_AMOUNT
 
     setTimeout(() => {
       ctx.dispatch( new SetLoading(false) )
 
       ctx.patchState({
-        ...ctx.getState(),
-        loadedProducts: [...loadedProducts, ...allProducts.slice(start, end)]
+        ...state,
+        loadedProducts: state.loadedProducts + PRODUCTS_AMOUNT
       })
     }, 1000);
   }
@@ -168,9 +164,6 @@ export class ProductsState {
   static canLoadMore(state: ProductsStateModel) {
     const anyFilter = state.typeFilter !== null || state.searchText !== null
 
-    return (
-      state.loadedProducts.length < state.allProducts.length &&
-      !anyFilter
-    )
+    return state.loadedProducts < state.allProducts.length && !anyFilter
   }
 }

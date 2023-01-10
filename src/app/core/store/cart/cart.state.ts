@@ -25,7 +25,7 @@ import { applyDiscount } from '@helpers/index';
 /** RETURN `State` DEFAULT INITIAL VALUE */
 export function cartDefaultValue(): CartStateModel {
   return {
-    products: [],
+    cartProducts: [],
 
     loading: null,
     filled: null,
@@ -47,34 +47,34 @@ export class CartState {
   /** RETURN TOTAL PRODUCTS IN CART */
   @Selector<number>()
   static totalProducts(state: CartStateModel) {
-    return state.products
+    return state.cartProducts
       .reduce((total, product) => total + product.amount, 0);
   }
 
   /** RETURN IN CART `products` WITH AMOUNT */
   @Selector<Product[]>()
   static products(state: CartStateModel) {
-    return state.products;
+    return state.cartProducts;
   }
- 
+
   /** RETURN TOTAL PRICE */
   @Selector<number>()
   static totalPrice(state: CartStateModel) {
-    return state.products.reduce((total, p) => {
+    return state.cartProducts.reduce((total, p) => {
       return total + ( applyDiscount(p.price, p.discount) * p.amount );
     }, 0);
   }
- 
+
   /** RETURN TOTAL PRICE */
   @Selector<boolean>()
   static isLoading(state: CartStateModel): boolean {
     return state.loading;
   }
-  
+
   /** RETURN IF IS A VALID BUY */
   @Selector<boolean>()
   static isValid(state: CartStateModel): boolean {
-    return state.products.reduce((valid, p) => {
+    return state.cartProducts.reduce((valid, p) => {
       return valid ? p.amount <= p.stock : false;
     }, true);
   }
@@ -86,9 +86,9 @@ export class CartState {
     ctx.patchState({ ...state, loading: true });
     ctx.dispatch( new SetLoading(true) );
 
-    const ids = state.products.map(p => p.id);
+    const ids = state.cartProducts.map(p => p.id);
     if ( ids.length ) {
-      return this.productsApi.getProducts(ids).pipe( 
+      return this.productsApi.getProducts(ids).pipe(
         tap(response => {
           ctx.patchState({ ...ctx.getState(), loading: false, error: null });
           return ctx.dispatch( new SetDetailedProducts(response.data.products) );
@@ -107,7 +107,7 @@ export class CartState {
   public setDetailedProducts(ctx: StateContext<CartStateModel>, { detailedProducts }: SetDetailedProducts) {
     const state = ctx.getState();
 
-    const products = produce(state.products, products => {
+    const cartProducts = produce(state.cartProducts, products => {
       return products.map(product => {
         const index = detailedProducts.findIndex(p => p.id === product.id);
 
@@ -115,34 +115,33 @@ export class CartState {
       });
     });
 
-    ctx.setState({ ...state, products });
+    ctx.setState({ ...state, cartProducts });
   }
 
   /** ADD PRODUCT ID TO CART STATE */
   @Action(AddProduct)
   public addProduct(ctx: StateContext<CartStateModel>, { id }: AddProduct) {
-    const state = ctx.getState().products;
+    const state = ctx.getState()
+    const cartProducts = produce(state.cartProducts, _cartProducts => {
+      let index = _cartProducts.findIndex(p => p.id == id);
 
-    const products = produce(state, products => {
-      let index = products.findIndex(p => p.id == id);
+      if ( index >= 0 )
+        _cartProducts[index].amount++;
+      else
+        _cartProducts.push({ id, amount: 1 });
 
-      if ( index >= 0 ) {
-        products[index].amount++;
-      } else {
-        products.push({ id, amount: 1 });
-      }
-      return products;
+      return _cartProducts;
     });
 
-    ctx.patchState({ ...state, products });
+    ctx.patchState({ ...state, cartProducts })
   }
 
   /** DECREASE PRODUCT AMOUNT BY ID TO CART STATE */
   @Action(SubstractProduct)
   public substractProduct(ctx: StateContext<CartStateModel>, { id }: SubstractProduct) {
-    const state = ctx.getState().products;
+    const state = ctx.getState();
 
-    const products = produce(state, products => {
+    const cartProducts = produce(state.cartProducts, products => {
       let index = products.findIndex(p => p.id == id);
 
       if ( index >= 0 ) {
@@ -153,15 +152,15 @@ export class CartState {
       return products;
     });
 
-    ctx.patchState({ ...state, products });
+    ctx.patchState({ ...state, cartProducts });
   }
 
   /** REMOVE PRODUCT ID FROM CART STATE */
   @Action(RemoveProduct)
   public removeProduct(ctx: StateContext<CartStateModel>, { id }: RemoveProduct)  {
-    const state = ctx.getState().products;
+    const state = ctx.getState();
 
-    const products = produce(state, products => {
+    const cartProducts = produce(state.cartProducts, products => {
       let index = products.findIndex(p => p.id == id);
 
       if ( index > -1 ) {
@@ -170,7 +169,7 @@ export class CartState {
       return products;
     });
 
-    ctx.patchState({ ...state, products });
+    ctx.patchState({ ...state, cartProducts });
   }
 
 
@@ -179,10 +178,10 @@ export class CartState {
   public buyProducts(ctx: StateContext<CartStateModel>) {
     const state = ctx.getState();
     ctx.dispatch( new SetLoading(true) );
-    
-    return this.productsApi.buyProducts(state.products).pipe(
+
+    return this.productsApi.buyProducts(state.cartProducts).pipe(
       tap(
-        response => null, 
+        response => null,
         error=> null,
         () => {
           ctx.dispatch( new SetLoading(false) );
