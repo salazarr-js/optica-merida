@@ -35,10 +35,10 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - [x] mock product detail page services
   - [x] mock cart page services
 - [x] fix broken images 
-- [ ] better empty views
+- [x] better empty views
   - [x] empty search
-  - [ ] 404
-  - [ ] empty cart
+  - [x] 404
+  - [x] empty cart
 - [ ] fix auth
 - [ ] fix email send
 - [x] fix stock artifact
@@ -54,7 +54,7 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - [ ] fix cart page
   - [ ] fix sign-in page
 - [x] add scroll to top button
-- [ ] paginador/mostrar mas
+- [x] paginador/mostrar mas
 - [ ] animations
   - [ ] animate searchbar
   - [x] animate scroll to top
@@ -68,6 +68,6 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - you will receive a confirmation mail after finish a simulated "buy", you wont receive any other mail after that ( no spam )
   - any payment method will be asked, the buy proces is just a simulation
   - any sesion data will be saved on server, we use only localstore to simulate the database
-- [ ] indrement/decrement stock after succesful sale
-
+- [x] indrement/decrement stock after succesful sale
+- [?] cart recomendations, random posts
 - [ ] update README

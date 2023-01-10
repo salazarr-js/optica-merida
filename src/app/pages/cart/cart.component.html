@@ -22,7 +22,7 @@
             <div class="actions">
               <button mat-button color="primary" (click)="removeProduct(p.id)">Eliminar</button>
             </div>
-          </div> 
+          </div>
 
           <div class="amount">
             <div class="remove-add">
@@ -51,7 +51,7 @@
               <p class="availables red">Sin stock</p>
             </ng-template>
 
-          </div> 
+          </div>
 
           <div class="price">
             <div class="discount" *ngIf="p.discount > 0">
@@ -60,7 +60,7 @@
             </div>
 
             <product-price class="total" [value]="finalPrice(p.price, p.discount)"></product-price>
-          </div> 
+          </div>
 
         </li>
       </ul>
@@ -73,10 +73,10 @@
 
         <div class="spacer"></div>
 
-        <button 
-          mat-flat-button 
-          large 
-          color="primary" 
+        <button
+          mat-flat-button
+          large
+          color="primary"
           [disabled]="!(isInvalid$ | async)"
           (click)="buy()"
         >{{ user ? 'Comprar' : 'Iniciar sesión' }}</button>
@@ -96,7 +96,7 @@
   <!-- EMPTY STATE -->
   <ng-template #emptyState>
     <div class="cart--empty">
-      <img src="assets/images/empty.svg">
+      <img src="assets/images/empty-cart.svg">
       <h1 class="title">Tu carrito está vacío</h1>
 
       <p class="text-center m-0">
