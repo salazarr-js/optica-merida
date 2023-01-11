@@ -31,14 +31,17 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   /** */
   search(): void {
-    const searchText = this.searchText?.trim()
-    if ( searchText?.length ) {
+    if ( this.searchText?.trim().length )
       this.store.dispatch( new SetSearchText(this.searchText) );
-    } else
+    else
       this.clear()
   }
 
-  clear():void {
+  clear(): void {
     this.store.dispatch( new RemoveSearchText() );
+  }
+
+  focus(): void {
+    document.querySelector<HTMLElement>('search-bar .searchbar-input').focus()
   }
 }

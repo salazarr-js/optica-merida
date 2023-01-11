@@ -45,18 +45,17 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
 - [ ] update third libs
 - [x] add searchbar + searching feature
   - [x] hide searchbar on unused routes
-- [ ] responsive fixes
+- [ ] responsive styles fixes
   - [x] fix hero
   - [x] fix home page
     - [x] responsive product card
     - [x] responsive filters
-  - [ ] fix product detail page
+  - [x] fix product detail page
   - [ ] fix cart page
   - [ ] fix sign-in page
 - [x] add scroll to top button
 - [x] paginador/mostrar mas
-- [ ] animations
-  - [ ] animate searchbar
+- [x] animations
   - [x] animate scroll to top
 - [ ] alert info 
   this is just a learning/testing propuse e-commerce app,

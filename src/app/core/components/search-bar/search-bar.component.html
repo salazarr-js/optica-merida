@@ -8,10 +8,22 @@
 >
 
 <button
+  *ngIf="searchText?.trim()?.length; else focusBtn"
   (click)="clear()"
   class="searchbar-icon"
   mat-icon-button
   matTooltip="Buscar"
 >
-  <mat-icon fontSet="material-icons-outlined">{{ searchText?.trim()?.length ? 'close' : 'search' }}</mat-icon>
+  <mat-icon fontSet="material-icons-outlined">close</mat-icon>
 </button>
+
+<ng-template #focusBtn>
+  <button
+    (click)="focus()"
+    class="searchbar-icon"
+    mat-icon-button
+    matTooltip="Buscar"
+  >
+    <mat-icon fontSet="material-icons-outlined">search</mat-icon>
+  </button>
+</ng-template>

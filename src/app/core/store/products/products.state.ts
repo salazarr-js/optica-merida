@@ -53,7 +53,7 @@ export class ProductsState {
   /** RETURN FILTERED PRODUCTS */
   @Selector<Product[]>()
   static filteredProducts(state: ProductsStateModel) {
-    const anyFilter = state.typeFilter !== null || state.searchText !== null
+    const anyFilter = state.typeFilter !== null || state.searchText.trim().length
 
     if (anyFilter)
       return state.allProducts
@@ -133,7 +133,7 @@ export class ProductsState {
   public removeSearchText(ctx: StateContext<ProductsStateModel>) {
   const state = ctx.getState()
   if ( state.searchText )
-    ctx.patchState({ ...state, searchText: null });
+    ctx.patchState({ ...state, searchText: '' });
   }
 
 
@@ -162,7 +162,7 @@ export class ProductsState {
   /** */
   @Selector<boolean>()
   static canLoadMore(state: ProductsStateModel) {
-    const anyFilter = state.typeFilter !== null || state.searchText !== null
+    const anyFilter = state.typeFilter !== null || state.searchText.trim().length
 
     return state.loadedProducts < state.allProducts.length && !anyFilter
   }
