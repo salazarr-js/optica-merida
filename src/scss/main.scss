@@ -1,4 +1,3 @@
-@use 'vendor' as mat;
 @import './vendor/';   // MATERIAL, BOOTSTRAP, THIRD PARTY STYLES IMPORTS ...
 @import './variables'; // ALL APP REUSABLE VARIABLES, COLORS, SIZES, FONTS
 @import './base/';     // BASE STILES, BASICS OVERWRITES ...
@@ -19,7 +18,7 @@
   }
   &.active {
     color: $white;
-    background-color: mat.getPrimaryColor();
+    background-color: $primary;
   }
   .mat-button-wrapper {
     height: 100%;
@@ -56,7 +55,7 @@ mat-progress-bar.mat-progress-bar {
 .swiper-container {
   .swiper-button-prev, .swiper-button-next {
     --swiper-navigation-size: 32px;
-    color: mat.getPrimaryColor();
+    color: $primary;
   }
   .swiper-pagination.swiper-pagination-bullets {
     .swiper-pagination-bullet {
@@ -64,9 +63,35 @@ mat-progress-bar.mat-progress-bar {
       height: 8px;
       transition: all .15s ease-in-out;
       border-radius: 8px;
-      background-color: mat.getPrimaryColor();
+      background-color: $primary;
       &.swiper-pagination-bullet-active {
         width: 24px;
+      }
+    }
+  }
+}
+
+
+/** */
+button.mat-flat-button.google-btn {
+  padding: 2px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(black, .1),
+              0 2px 4px -2px rgba(black, .1);
+  padding-right: 32px;
+  .mat-button-wrapper {
+    gap: 16px;
+
+    .google-btn__icon {
+      display: flex;
+      padding: 8px;
+      align-items: center;
+      aspect-ratio: 1/1;
+      border-radius: 2px;
+      justify-content: center;
+      background-color: white;
+      img {
+        height: 20px;
       }
     }
   }

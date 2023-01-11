@@ -8,9 +8,11 @@
   align-items: center;
 
   img {
-    height: 50vh;
+    width: 100%;
+    width: calc(100vw - 32px);
     margin: 0 auto;
     display: block;
+    max-width: 520px;
   }
 
   .title {
@@ -23,14 +25,14 @@
       font-weight: $font-light;
       line-height: 1;
       margin-bottom: 8px;
-    } 
-    
+    }
+
     p {
       color: $gray;
       margin: 0;
       font-size: 16px;
       text-align: center;
-      font-weight: $font-light;  
+      font-weight: $font-light;
       line-height: 1;
     }
   }
@@ -39,6 +41,6 @@
     margin: 0 auto;
     max-width: 320px;
     text-align: center;
-    
+
   }
 }

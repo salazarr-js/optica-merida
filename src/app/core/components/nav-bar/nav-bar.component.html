@@ -6,15 +6,16 @@
     <span class="navbar-brand--text">Óptica Mérida</span>
   </a>
 
-  <span class="navbar-spacer"></span>
-
-  <search-bar *ngIf="isSearchable$ | async"></search-bar>
+  <search-bar class="mr-2" *ngIf="isSearchable$ | async"></search-bar>
 
   <!-- USER ACTION -->
   <div *ngIf="user$ | async as user" >
     <div class="navbar-user" [matMenuTriggerFor]="menu" matRipple >
-      <div class="navbar-user--img" [bg-image]="user.photoURL"></div>
-      <h3 class="navbar-user--name">{{ user.displayName }}</h3>
+      <div
+        class="navbar-user--img"
+        [bg-image]="user.photoURL"
+        [matTooltip]="user.displayName"
+      ></div>
     </div>
 
     <mat-menu #menu="matMenu">

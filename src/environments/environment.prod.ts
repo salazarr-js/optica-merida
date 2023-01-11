@@ -4,14 +4,12 @@ export const environment = {
   
   apiUrl: 'https://61d3baaa466a.ngrok.io/api/',
   emailUrl: 'https://2b85cbef7118.ngrok.io/',
-
   firebase: {
-    apiKey: "AIzaSyDTLDZykHWTh_v5pynRFqnefULu7SfeDnc",
-    authDomain: "optica-merida.firebaseapp.com",
-    databaseURL: "https://optica-merida.firebaseio.com",
-    projectId: "optica-merida",
-    storageBucket: "optica-merida.appspot.com",
-    messagingSenderId: "971454338692",
-    appId: "1:971454338692:web:3ef73f1e630ff44e2a14d1"
+    projectId: 'slzr-test-api',
+    appId: '1:114753889766:web:e9ec29f8d8daf26b9e2227',
+    storageBucket: 'slzr-test-api.appspot.com',
+    apiKey: 'AIzaSyAXW-x97uAfBh9l-pPvDqdzCABertyNVWo',
+    authDomain: 'slzr-test-api.firebaseapp.com',
+    messagingSenderId: '114753889766',
   }
 };

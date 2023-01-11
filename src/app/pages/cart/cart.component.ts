@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 /** FIREBASE */
-// import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth, authState, User } from '@angular/fire/auth'
 /** THIRD */
 import { Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -37,15 +37,14 @@ export class CartComponent implements OnInit {
   @Select(CartState.isLoading) isLoading$: Observable<boolean>;
 
   public products: Product[];
-  // public user: firebase.User
-  public user = {}
+  public user: User
 
   /** */
   constructor(
     private store   : Store,
-    // private auth    : AngularFireAuth,
     private router  : Router,
-    private emailApi: EmailApiService
+    private auth    : Auth,
+    // private emailApi: EmailApiService
   ) {
     this.products = [];
   }
@@ -58,9 +57,9 @@ export class CartComponent implements OnInit {
     .pipe( untilDestroyed(this) )
     .subscribe(products => this.products = products);
 
-    // this.auth.user
-    // .pipe( untilDestroyed(this) )
-    // .subscribe(user => this.user = user);
+    authState(this.auth)
+      .pipe( untilDestroyed(this) )
+      .subscribe(user => this.user = user);
   }
 
    /** RETURN THE TOTAL FINAL PRICE */
@@ -95,9 +94,10 @@ export class CartComponent implements OnInit {
     if ( this.user ) {
       this.store.dispatch( new BuyProducts() )
       .pipe( untilDestroyed(this) )
-      .subscribe(data =>  {
+      .subscribe(_ =>  {
         this.sendEmail();
         this.successSwal.fire();
+        this.store.dispatch( new SetLoading(false) );
       });
     } else {
       this.router.navigate(['/', ROUTES_NAMES.SIGN_IN]);
@@ -115,22 +115,23 @@ export class CartComponent implements OnInit {
 
   /** */
   sendEmail(): void {
-    const mail = {
+    console.warn("sendEmail")
+    // const mail = {
       // to: this.user.email,
       // name: this.user.displayName,
       // products: this.products,
       // total: this.store.selectSnapshot( CartState.totalPrice )
-    };
+    // };
 
-    this.emailApi.sendInvoiceEmail( mail )
-    .pipe()
-    .subscribe(
-      response => {
-        console.warn("RESPONSE", response);
-      }, error => {
-        console.error("ERROR", error);
-      }
-    );
+    // this.emailApi.sendInvoiceEmail( mail )
+    // .pipe()
+    // .subscribe(
+    //   response => {
+    //     console.warn("RESPONSE", response);
+    //   }, error => {
+    //     console.error("ERROR", error);
+    //   }
+    // );
 
   }
 }

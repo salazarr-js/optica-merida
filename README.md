@@ -51,7 +51,7 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
     - [x] responsive product card
     - [x] responsive filters
   - [x] fix product detail page
-  - [ ] fix cart page
+  - [x] fix cart page
   - [ ] fix sign-in page
 - [x] add scroll to top button
 - [x] paginador/mostrar mas
@@ -69,4 +69,7 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - any sesion data will be saved on server, we use only localstore to simulate the database
 - [x] indrement/decrement stock after succesful sale
 - [?] cart recomendations, random posts
+- [ ] redirect to home if isAuthenticated in sign-in page
+- [ ] hide searchbar on other pages
+- [ ]
 - [ ] update README

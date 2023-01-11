@@ -193,9 +193,11 @@
       flex-direction: column;
       justify-content: center;
       img {
-        margin: 0 auto;
-        height: 35vh;
+        width: 100%;
+        width: calc(100vw - 32px);
+        margin: -16px auto -32px;
         display: block;
+        max-width: 520px;
       }
       .title {
         color: $dark;

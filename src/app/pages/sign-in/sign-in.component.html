@@ -1,20 +1,23 @@
 <div class="container">
-  <img src="assets/images/auth.svg">
-  
+  <img class="illustration" src="assets/images/auth.svg">
+
   <div class="title">
     <h1>Su compra está protegida</h1>
     <p>Para finalizar su compra, debe iniciar sesión.</p>
   </div>
-  
+
 
   <p class="buttons">
-    <button mat-flat-button large block color="primary" (click)="signIn()" class="mb-2">
+    <button mat-flat-button large color="primary" (click)="signIn()" class="google-btn">
+      <div class="google-btn__icon">
+        <img src="assets/images/google.svg">
+      </div>
       Iniciar Sesión
     </button>
 
-    <button mat-stroked-button large block color="primary" routerLink="/">
+    <button mat-stroked-button large color="primary" routerLink="/">
       Regresar al inicio
     </button>
   </p>
-    
+
 </div>
