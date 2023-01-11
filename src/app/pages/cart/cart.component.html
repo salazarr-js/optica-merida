@@ -2,13 +2,14 @@
 
   <h1 class="cart--title">Carrito</h1>
 
-  <div class="cart--products-container" *ngIf="products.length; else emptyState">
-    <div *ngIf="!(isLoading$ | async)">
-
+  <ng-conteiner *ngIf="!(isLoading$ | async)">
+    <div class="cart--products-container" *ngIf="products.length; else emptyState">
       <ul class="cart--products">
         <li class="cart--product" *ngFor="let p of products">
 
-          <div class="image" [bg-image]="firstImage( p.images )"></div>
+          <div class="image">
+            <img [src]="firstImage(p.images)">
+          </div>
 
           <div class="detail">
             <a [routerLink]="['/', 'producto', p.id]">{{ p.description }}</a>
@@ -24,43 +25,45 @@
             </div>
           </div>
 
-          <div class="amount">
-            <div class="remove-add">
-              <button mat-icon-button color="primary" (click)="decProductAmount(p.id)" [disabled]="p.amount == 1">
-                <mat-icon fontSet="material-icons-outlined">remove</mat-icon>
-              </button>
+          <!-- <div class="d-flex flex-wrap"> -->
+            <div class="amount">
+              <div class="remove-add">
+                <button mat-icon-button color="primary" (click)="decProductAmount(p.id)" [disabled]="p.amount == 1">
+                  <mat-icon fontSet="material-icons-outlined">remove</mat-icon>
+                </button>
 
-              <span>{{ p.amount }}</span>
+                <span>{{ p.amount }}</span>
 
-              <button
-                mat-icon-button
-                color="primary"
-                [disabled]="p.amount === p.stock"
-                (click)="incProductAmount(p.id)"
-              >
-                <mat-icon fontSet="material-icons-outlined">add</mat-icon>
-              </button>
+                <button
+                  mat-icon-button
+                  color="primary"
+                  [disabled]="p.amount === p.stock"
+                  (click)="incProductAmount(p.id)"
+                >
+                  <mat-icon fontSet="material-icons-outlined">add</mat-icon>
+                </button>
+              </div>
+
+              <p
+                class="availables"
+                [ngClass]="{ red: p.amount > p.stock }"
+                *ngIf="p.stock; else sinStock"
+              >{{ p.stock }} Disponibles</p>
+              <ng-template #sinStock>
+                <p class="availables red">Sin stock</p>
+              </ng-template>
+
             </div>
 
-            <p
-              class="availables"
-              [ngClass]="{ red: p.amount > p.stock }"
-              *ngIf="p.stock; else sinStock"
-            >{{ p.stock }} Disponibles</p>
-            <ng-template #sinStock>
-              <p class="availables red">Sin stock</p>
-            </ng-template>
+            <div class="price">
+              <div class="discount" *ngIf="p.discount > 0">
+                <span class="percent">-{{ p.discount }}%</span>
+                <product-price [value]="p.price" [lined]="true"></product-price>
+              </div>
 
-          </div>
-
-          <div class="price">
-            <div class="discount" *ngIf="p.discount > 0">
-              <span class="percent">-{{ p.discount }}%</span>
-              <product-price [value]="p.price" [lined]="true"></product-price>
+              <product-price class="total" [value]="finalPrice(p.price, p.discount)"></product-price>
             </div>
-
-            <product-price class="total" [value]="finalPrice(p.price, p.discount)"></product-price>
-          </div>
+          <!-- </div> -->
 
         </li>
       </ul>
@@ -70,8 +73,6 @@
           <span>Total</span>
           <product-price [value]="totalPrice$ | async"></product-price>
         </h2>
-
-        <div class="spacer"></div>
 
         <button
           mat-flat-button
@@ -91,19 +92,19 @@
         (close)="finishBuy()"
       ></swal>
     </div>
-  </div>
 
-  <!-- EMPTY STATE -->
-  <ng-template #emptyState>
-    <div class="cart--empty">
-      <img src="assets/images/empty-cart.svg">
-      <h1 class="title">Tu carrito está vacío</h1>
+    <!-- EMPTY STATE -->
+    <ng-template #emptyState>
+      <div class="cart--empty">
+        <img src="assets/images/empty-cart.svg">
+        <h1 class="title">Tu carrito está vacío</h1>
 
-      <p class="text-center m-0">
-        <button mat-stroked-button color="primary" routerLink="/">
-          Regresar al inicio
-        </button>
-      </p>
-    </div>
-  </ng-template>
+        <p class="text-center m-0">
+          <button mat-stroked-button color="primary" routerLink="/">
+            Regresar al inicio
+          </button>
+        </p>
+      </div>
+    </ng-template>
+  </ng-conteiner>
 </div>
