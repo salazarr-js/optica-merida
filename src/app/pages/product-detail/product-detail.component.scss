@@ -2,23 +2,21 @@
 
 :host {
   display: block;
-  padding: 48px 0;
+  padding: 64px 0;
   .product-detail--container {
-    padding: 48px;
-    min-height: 520px;
+    padding: 48px 32px;
     box-shadow: 0 1px 2px 0 rgba($darkest, .3);
-    border-radius: 4px;
+    border-radius: 8px;
     background-color: $white;
 
     .swiper--container {
-      height: 520px;
       .swiper--slide {
         display: flex;
         align-items: center;
         .swipper--img-container {
           width: 100%;
           display: block;
-          padding: 0 32px;
+          padding: 0 16px;
           .swiper--img {
             display: block;
             width: 100%;
@@ -49,16 +47,17 @@
           margin-bottom: 8px;
         }
         .final {
+          gap: 12px;
           color: $gray-dark;
           display: flex;
           font-size: 32px;
+          flex-wrap: wrap;
           line-height: 1;
           align-items: center;
           span {
             color: $dark;
             padding: 8px 16px;
             font-size: 14px;
-            margin-left: 12px;
             border-radius: 1em;
             background-color: $accent;
           }

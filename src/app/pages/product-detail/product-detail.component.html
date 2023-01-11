@@ -1,7 +1,7 @@
 <div class="container product-detail--container">
-  <div class="row" *ngIf="product">
+  <div class="row align-items-center" *ngIf="product">
     <!-- SLIDER -->
-    <div class="col-8">
+    <div class="col-12 col-lg-8 my-4">
 
       <div class="swiper-container swiper--container" swiper>
         <div class="swiper-wrapper">
@@ -11,9 +11,9 @@
             </div>
           </div>
         </div>
-       
+
         <div class="swiper-pagination"></div>
-       
+
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </div>
@@ -21,15 +21,15 @@
     </div>
 
     <!-- DETALLES -->
-    <div class="col-4">
-      <div class="detail--container"> 
+    <div class="col-12 col-lg-4">
+      <div class="detail--container">
         <h2 class="title">{{ product.description }}</h2>
 
         <div class="price">
-          <product-price 
-            class="discount" 
-            *ngIf="product.discount > 0" 
-            [value]="priceDiscount" 
+          <product-price
+            class="discount"
+            *ngIf="product.discount > 0"
+            [value]="priceDiscount"
             [lined]="true"
           ></product-price>
 
@@ -52,10 +52,10 @@
             <p class="stock">Sin stock</p>
           </ng-template>
 
-          <button 
-            mat-flat-button 
-            large 
-            color="primary" 
+          <button
+            mat-flat-button
+            large
+            color="primary"
             [disabled]="!canAdd"
             (click)="addToCart()"
           >Agregar al carrito</button>
