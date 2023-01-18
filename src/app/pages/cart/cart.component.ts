@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
-/** FIREBASE */
-import { Auth, authState, User } from '@angular/fire/auth'
 /** THIRD */
+import { Auth, authState, User } from '@angular/fire/auth'
 import { Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
@@ -44,7 +43,7 @@ export class CartComponent implements OnInit {
     private store   : Store,
     private router  : Router,
     private auth    : Auth,
-    // private emailApi: EmailApiService
+    private emailApi: EmailApiService
   ) {
     this.products = [];
   }
@@ -115,23 +114,13 @@ export class CartComponent implements OnInit {
 
   /** */
   sendEmail(): void {
-    console.warn("sendEmail")
-    // const mail = {
-      // to: this.user.email,
-      // name: this.user.displayName,
-      // products: this.products,
-      // total: this.store.selectSnapshot( CartState.totalPrice )
-    // };
+    const mail = {
+      to: this.user.email,
+      name: this.user.displayName,
+      products: this.products,
+      total: this.store.selectSnapshot(CartState.totalPrice)
+    };
 
-    // this.emailApi.sendInvoiceEmail( mail )
-    // .pipe()
-    // .subscribe(
-    //   response => {
-    //     console.warn("RESPONSE", response);
-    //   }, error => {
-    //     console.error("ERROR", error);
-    //   }
-    // );
-
+    this.emailApi.sendInvoiceEmail(mail)
   }
 }

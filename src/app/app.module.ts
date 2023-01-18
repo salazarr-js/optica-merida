@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 // FIREBASE
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFunctions, getFunctions } from '@angular/fire/functions';
 
 /** MAIN ROOT MODULE */
 @NgModule({
@@ -18,7 +19,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
     AppRouterModule,
 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    provideFunctions(() => getFunctions()),
   ],
   providers: [],
   bootstrap: [AppComponent]

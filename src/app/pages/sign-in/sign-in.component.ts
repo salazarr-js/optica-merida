@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Auth, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth'
+import { Auth, authState, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth'
 
 import { ROUTES_NAMES } from '@app/routes/routes';
 import { Store } from '@ngxs/store';
 import { SetLoading } from '@app/core/store/loading';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { first } from 'rxjs/operators';
 
+@UntilDestroy()
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -22,6 +25,13 @@ export class SignInComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    authState(this.auth)
+    .pipe( untilDestroyed(this), first() )
+    .subscribe(user => {
+      console.warn({user})
+      if (user)
+        this.router.navigate(['/'])
+    });
   }
 
   /** */

@@ -39,20 +39,20 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - [x] empty search
   - [x] 404
   - [x] empty cart
-- [ ] fix auth
-- [ ] fix email send
+- [x] fix auth
+- [x] fix email send
 - [x] fix stock artifact
 - [ ] update third libs
 - [x] add searchbar + searching feature
   - [x] hide searchbar on unused routes
-- [ ] responsive styles fixes
+- [x] responsive styles fixes
   - [x] fix hero
   - [x] fix home page
     - [x] responsive product card
     - [x] responsive filters
   - [x] fix product detail page
   - [x] fix cart page
-  - [ ] fix sign-in page
+  - [x] fix sign-in page
 - [x] add scroll to top button
 - [x] paginador/mostrar mas
 - [x] animations
@@ -69,7 +69,7 @@ Ejecuta el comando `ng build` para compilar el proyecto. El proyecto compilado s
   - any sesion data will be saved on server, we use only localstore to simulate the database
 - [x] indrement/decrement stock after succesful sale
 - [?] cart recomendations, random posts
-- [ ] redirect to home if isAuthenticated in sign-in page
+- [x] redirect to home if isAuthenticated in sign-in page
 - [ ] hide searchbar on other pages
 - [ ]
 - [ ] update README
