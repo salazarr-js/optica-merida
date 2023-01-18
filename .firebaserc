@@ -1,14 +1,5 @@
 {
   "projects": {
-    "default": "optica-merida"
-  },
-  "targets": {
-    "optica-merida": {
-      "hosting": {
-        "merida-optics": [
-          "optica-merida"
-        ]
-      }
-    }
+    "default": "slzr-test-api"
   }
 }
