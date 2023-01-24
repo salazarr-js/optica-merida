@@ -51,10 +51,8 @@ export class ProductsState {
   constructor(private productsApi: ProductsApiService) {}
 
   /** RETURN FILTERED PRODUCTS */
-  @Selector<Product[]>()
-  static filteredProducts(state: ProductsStateModel) {
-    const anyFilter = state.typeFilter !== null || state.searchText.trim().length
-
+  @Selector([ProductsState.anyFilter])
+  static filteredProducts(state: ProductsStateModel, anyFilter: boolean) {
     if (anyFilter)
       return state.allProducts
         .filter(p => {
@@ -69,6 +67,15 @@ export class ProductsState {
 
     return state.allProducts.slice(0, state.loadedProducts)
   }
+
+  /** */
+  @Selector<Boolean>()
+  static anyFilter(state: ProductsStateModel) {
+    const anyFilter = state.typeFilter !== null || !!(state.searchText.trim().length)
+
+    return anyFilter;
+  }
+
 
   /** RETURN SELECTED TYPE FILTER */
   @Selector<ProductTypes>()
@@ -160,10 +167,8 @@ export class ProductsState {
   }
 
   /** */
-  @Selector<boolean>()
-  static canLoadMore(state: ProductsStateModel) {
-    const anyFilter = state.typeFilter !== null || state.searchText.trim().length
-
+  @Selector([ProductsState.anyFilter])
+  static canLoadMore(state: ProductsStateModel, anyFilter: boolean) {
     return state.loadedProducts < state.allProducts.length && !anyFilter
   }
 }

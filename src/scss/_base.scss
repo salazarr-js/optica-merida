@@ -16,6 +16,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-weight : normal;
 
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+
   :focus {
     outline : none;
   }

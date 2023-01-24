@@ -45,13 +45,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getBgImg();
 
-    this.store.dispatch([ new GetAllProducts(), new SetSearchable(true)]);
+    this.store.dispatch([new GetAllProducts(), new SetSearchable(true)])
 
     this.store.select( ProductsState.filteredProducts )
       .pipe( untilDestroyed(this) )
-      .subscribe(products => {
-        this.products = products
-      });
+      .subscribe(products => this.products = products );
 
     this.store.select( ProductsState.typeFilter )
       .pipe( untilDestroyed(this) )
