@@ -1,6 +1,8 @@
-# Óptica Mérida - Comercio Electrónico
+# 👓 Óptica Mérida
 
-Aplicación web cliente para Comercio Electrónico de [**Óptica Mérida**](https://optica-merida.web.app)
+E-commerce demo built with Angular and Material Design
+
+> All data is scraped and mock-served to simulate real product listings and interactions, created for learning and UI practice.
 
 ## Pre-requisitos
 
